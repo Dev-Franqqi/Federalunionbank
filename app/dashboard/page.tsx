@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-
+import TabSwitcher from "../mycomps/TabsSwitcher";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Skeleton } from "@/components/ui/skeleton";
 export default function Dashboard(){
@@ -22,11 +22,11 @@ export default function Dashboard(){
     <div className="flex gap-x-6 items-center">
       <FaBell className="text-2xl" />
       <Avatar className="bg-black">
-      <AvatarFallback className="font-medium tracking-wider">FE</AvatarFallback>
+      <AvatarFallback className="font-medium tracking-wider">AE</AvatarFallback>
       </Avatar>
       <div>
-        <p className="font-medium">Franklin Esendu</p>
-        <p className="text-xs">franklinebi75@gmail.com</p>
+        <p className="font-medium">Ayibatonye Esendu</p>
+        <p className="text-xs">ayibatonyeesendu@gmail.com</p>
       </div>
     </div>
 
@@ -58,13 +58,13 @@ export default function Dashboard(){
 </DropdownMenu>
 
       </div>
-      <p className="text-lg mt-2 font-bold tracking-tighter "><span>$</span>1,000</p>
+      <p className="text-lg mt-2 font-bold tracking-tighter "><span className="text-sm font-medium w-1/4 ">$</span>350.23</p>
 
       <div className="flex gap-x-2 mx-auto w-fit">
-        <div className="w-[4rem] h-[4rem] bg-white rounded-2xl flex flex-col justify-center">
-        <TfiReceipt className="text-black text-center text-2xl mx-auto" />
+        <div className="w-[3rem] h-[3rem] bg-white rounded-2xl flex flex-col justify-center">
+        <TfiReceipt className="text-black text-center text-lg mx-auto" />
         </div>
-        <div className="w-[4rem] h-[4rem] bg-white rounded-2xl flex flex-col justify-center">
+        <div className="w-[3rem] h-[3rem] bg-white rounded-lg flex flex-col justify-center">
         <FaRegArrowAltCircleUp className="text-black text-center text-2xl mx-auto" />
         </div>
       </div>
@@ -80,6 +80,8 @@ export default function Dashboard(){
 
     </div>
   </main>
+  <TabSwitcher />
+
   
   
   </>
