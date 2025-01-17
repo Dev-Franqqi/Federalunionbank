@@ -24,6 +24,7 @@ export type ISignupinput={
   country:string,
   address:string,
   accountNumber:string,
+  amount:string
 
 }
 
