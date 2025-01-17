@@ -8,7 +8,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Logo from "../public/AFCU.png";
+import Logo from '../../public/AFCU.png'
 import Image from "next/image";
 export default function Menubar() {
   const [isElementVisible, setIsElementVisible] = useState(false);

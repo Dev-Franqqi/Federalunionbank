@@ -11,23 +11,7 @@ export default function Lifestylecomp(){
                 <p className="text-left font-medium text-sm w-2/5 ">eVoucher (Gift Cards)</p>
 
             </div>
-            <div className="w-[47%] flex flex-col justify-between py-8 px-6 bg-white rounded-xl h-[9rem]">
-                <LiaEnvelopeOpenTextSolid className="text-2xl" />
-                <p className="text-left font-medium text-sm w-2/5"> Airtime & Data Top-up</p>
-
-            </div>
-        
-            <div className="w-[47%] flex flex-col justify-between py-8 px-6 bg-white rounded-xl h-[9rem]">
-                <LiaEnvelopeOpenTextSolid className="text-2xl"/>
-                <p className="text-left font-medium text-sm w-2/5"> Internation Airtime</p>
-
-            </div>
-
-            <div className="w-[47%] flex flex-col justify-between py-8 px-6 bg-white rounded-xl h-[9rem]">
-                <MdPersonAddAlt1 className="text-2xl" />
-                <p className="text-left font-medium text-sm w-2/5">Scheduled Payment</p>
-
-            </div>
+           
         
         
         </section>

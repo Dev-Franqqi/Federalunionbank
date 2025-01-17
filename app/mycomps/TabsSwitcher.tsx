@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Accountcomp from "./Accountcomp";
 import Transfercomp from "./Transfercomp";
+import Billscomp from './Billscomp'
+import Lifestylecomp from './Lifestylecomp'
 const TabSwitcher = () => {
   // State to keep track of the active tab
   const [activeTab, setActiveTab] = useState("Account");
@@ -53,8 +55,8 @@ const TabSwitcher = () => {
       <div className="mt-5">
         {activeTab === "Account" && <Accountcomp />}
         {activeTab === "Transfers" && <Transfercomp />}
-        {activeTab === "Bill Payments" && <div>Bill Payment stuff</div>}
-        {activeTab === "Lifestyle" && <div>Lifestyle stuff</div>}
+        {activeTab === "Bill Payments" && <Billscomp />}
+        {activeTab === "Lifestyle" && <Lifestylecomp />}
       </div>
     </section>
   );
