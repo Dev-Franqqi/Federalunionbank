@@ -8,6 +8,8 @@ import { useEffect } from "react";
 import Cookies from "js-cookie"
 import Ladywithcomputer from "../image/pexels-christina-morillo-1181292.jpg"
 import {useForm,SubmitHandler} from 'react-hook-form'
+import { getDoc,doc } from "firebase/firestore";
+import {db} from "../mycomps/firebase";
 import { auth } from "../mycomps/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 export type ILogininput ={
@@ -20,27 +22,39 @@ export default function Login() {
    
     const {register,handleSubmit,setError,formState:{errors,isSubmitting}} =useForm<ILogininput>()
 
-    const onSubmit :SubmitHandler<ILogininput> =async(data)=>{
-      try{
-        await signInWithEmailAndPassword(auth,data.email,data.password)
-        .then(()=>{
-          router.push('/dashboard')
-        })
-      }catch(error:any){
-        console.log(error.message)
-        if(error.message === "Firebase: Error (auth/invalid-credential)."){
+    const onSubmit: SubmitHandler<ILogininput> = async (data) => {
+      try {
+        // Fetch user information from Firestore
+        const userDoc = await getDoc(doc(db, "UserInfo", data.email));
+        if (userDoc.exists()) {
+          Cookies.set('User', JSON.stringify(userDoc.data()));
+        } else {
+          throw new Error("User not found");
+        }
+    
+        // Sign in with Firebase authentication
+        await signInWithEmailAndPassword(auth, data.email, data.password);
+    
+        // Redirect to dashboard upon successful login
+        router.push('/dashboard');
+      } catch (error: any) {
+        console.error(error.message);
+    
+        // Handle specific error cases
+        if (error.code === "auth/invalid-credential") {
           setError('root', {
             type: 'manual',
-            message: 'Email or passord incorrect.',
+            message: 'Email or password incorrect.',
           });
-
-          
-        }else{
-
-          setError("root",error.message)
+        } else {
+          setError('root', {
+            type: 'manual',
+            message: error.message || 'An unexpected error occurred.',
+          });
         }
       }
-    }
+    };
+    
   useEffect(() => {
     const userCookie = Cookies.get('user');
     if (userCookie) {

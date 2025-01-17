@@ -22,7 +22,9 @@ export type ISignupinput={
   pin:string,
   phoneNumber:string,
   country:string,
-  address:string
+  address:string,
+  accountNumber:string,
+
 }
 
 export default function Signup() {
@@ -35,36 +37,49 @@ export default function Signup() {
    throw new Error("passwords do not match")
   }
 };
+function generateAccountNumber() {
+  return Math.floor(1000000000 + Math.random() * 9000000000).toString();
+}
 
-const onSubmit:SubmitHandler<ISignupinput> =async (data)=>{
-  comparePassword(data.password,data.confirmPassword);
-  try{
-    await createUserWithEmailAndPassword(auth,data.email,data.password)
-    .then(async()=>{
-      await setDoc(doc(db,'UserInfo',data.email),data)
-        .then(()=>{
-          Cookies.set('User',JSON.stringify(data))
-          router.push('/dashboard')
-        })
 
-      })
+const onSubmit: SubmitHandler<ISignupinput> = async (data) => {
+  try {
+    // Compare passwords
+    comparePassword(data.password, data.confirmPassword);
 
-    }catch(error:any){
-      if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
-        // Handle the email already in use error
-        setError('root', {
-          type: 'manual',
-          message: 'This email is already registered. Please try another one.',
-        });
-      } else {
-        // Handle other errors
-        setError('root', { message: error.message });
-      }
+    // Create a new user with email and password
+    const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+
+    // Save user data to Firestore
+    const userInfo = {
+      ...data,
+      accountNumber: generateAccountNumber(),
+      amount: 0,
+    };
+    await setDoc(doc(db, 'UserInfo', data.email), userInfo);
+
+    // Set user data in a cookie
+    Cookies.set('User', JSON.stringify(userInfo));
+
+    // Redirect to dashboard
+    await router.push('/dashboard');
+  } catch (error: any) {
+    if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
+      // Handle email already in use
+      setError('root', {
+        type: 'manual',
+        message: 'This email is already registered. Please try another one.',
+      });
+    } else {
+      // Handle other errors
+      setError('root', {
+        message: error.message || 'An unexpected error occurred.',
+      });
+      console.error('Signup Error:', error);
     }
-
-
   }
-  
+};
+
 
   useEffect(()=>{
     console.log(errors.root)

@@ -1,8 +1,12 @@
+'use client'
 import { Avatar ,AvatarFallback} from "@/components/ui/avatar"
 import { FaBell } from "react-icons/fa";
 import { TfiReceipt } from "react-icons/tfi"
 import { FaRegArrowAltCircleUp } from "react-icons/fa";
 import { IoIosArrowDropdown } from "react-icons/io";
+import { useEffect,useState } from "react";
+import Cookies from "js-cookie";
+import { ISignupinput } from "../signup/page";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,19 +18,39 @@ import {
 import TabSwitcher from "../mycomps/TabsSwitcher";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useRouter } from "next/navigation";
 export default function Dashboard(){
+  const [user,setUser] = useState<ISignupinput>()
+  const router = useRouter() 
+
+  useEffect(()=>{
+    const userCookie = Cookies.get('User')
+    if(userCookie){
+      setUser(JSON.parse(userCookie))
+      console.log(user)
+    }
+    else{
+      router.push('/login')
+    }
+
+  },[])
 
   return<>
+
 
   <nav className="flex justify-between items-center p-6">
     <div className="flex gap-x-6 items-center">
       <FaBell className="text-2xl" />
       <Avatar className="bg-black">
-      <AvatarFallback className="font-medium tracking-wider">AE</AvatarFallback>
+      <AvatarFallback className="font-medium tracking-wider">
+  {user 
+    ? `${user.firstname.charAt(0).toUpperCase()}${user.lastname.charAt(0).toUpperCase()}` 
+    : "N/A"}
+</AvatarFallback>
       </Avatar>
       <div>
-        <p className="font-medium">Ayibatonye Esendu</p>
-        <p className="text-xs">ayibatonyeesendu@gmail.com</p>
+        <p className="font-medium">{}</p>
+        <p className="text-xs">{user?`${user.firstname} ${user.lastname}`:"N/A"}</p>
       </div>
     </div>
 
@@ -40,7 +64,7 @@ export default function Dashboard(){
       <div className="font-medium text-sm">
 
       <p>Regular</p>
-      <p>134948850</p>
+      <p>{user?user.accountNumber:"N/A"}</p>
       </div>
 
       <div className="w-full h-fit px-4 py-2 mt-4 text-sm bg-black rounded-2xl flex justify-between">
@@ -58,7 +82,7 @@ export default function Dashboard(){
 </DropdownMenu>
 
       </div>
-      <p className="text-lg mt-2 font-bold tracking-tighter "><span className="text-sm font-medium w-1/4 ">$</span>350.23</p>
+      <p className="text-lg mt-2 font-bold tracking-tighter "><span className="font-medium w-1/4 ">$</span>{user? `${user.amount}`:'N/A'}</p>
 
       <div className="flex gap-x-2 mx-auto w-fit">
         <div className="w-[3rem] h-[3rem] bg-white rounded-2xl flex flex-col justify-center">
