@@ -1,0 +1,23 @@
+.dashboard_button{
+    @apply font-medium text-xs w-fit;
+    background: #f0f0f0;
+    width:50px;
+    height:20px;
+}
+
+
+.transaction_button{
+    background: #f6f5f5;
+    @apply flex w-3/6 ml-2 rounded-md p-2
+
+
+}
+
+.util_section{
+    @apply flex justify-between gap-x-2 mt-10 text-center
+}
+
+.util_section div{
+    background-color: #F6F6F6;
+    @apply rounded-md w-[80px] h-[60px] py-2 
+}
