@@ -8,7 +8,8 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
+import Logo from "../public/AFCU.png";
+import Image from "next/image";
 export default function Menubar() {
   const [isElementVisible, setIsElementVisible] = useState(false);
 
@@ -21,7 +22,7 @@ export default function Menubar() {
       <nav className="fixed z-10 w-screen md:hidden">
         <div className="flex  justify-between px-3 bg-white pt-2 text-xl">
           <HiBars3 onClick={handleButtonClick} className="text-3xl" />
-          <header className=" font-bold ml-5 text-center">ASAP</header>
+          <header className=" font-bold ml-5 text-center"><Image src={Logo} alt=''/></header>
           <Button className="font-bold text-blue-800" variant={'link'} >
             <Link className="mb-2" href="/login">
               Log in

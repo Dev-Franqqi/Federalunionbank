@@ -7,6 +7,13 @@ import { IoIosArrowDropdown } from "react-icons/io";
 import { useEffect,useState } from "react";
 import Cookies from "js-cookie";
 import { ISignupinput } from "../signup/page";
+import { MdHomeFilled } from "react-icons/md";
+import { IoPersonAdd } from "react-icons/io5";
+import { FaGear } from "react-icons/fa6";
+import { IoLogOutSharp } from "react-icons/io5";
+import { PiReceiptFill } from "react-icons/pi";
+import Logo from '../../public/AFCU.png'
+import Image from "next/image";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -51,12 +58,26 @@ export default function Dashboard(){
       <div>
         <p className="font-medium">{}</p>
         <p className="text-xs">{user?`${user.firstname} ${user.lastname}`:"N/A"}</p>
+        <p className="text-xs">{user?`${user.email}`:"N/A"}</p>
       </div>
     </div>
 
     <RxHamburgerMenu className="text-2xl font-medium"/>
 
   </nav>
+  <aside className="w-2/5 bg-gray-200 h-screen absolute z-10 top-0 flex flex-col justify-between ">
+  <Image src={Logo} width={100} className="ml-4 mt-4" alt="AFCU" />
+    <ul className="h-3/5 flex flex-col justify-between ">
+      <li className="flex items-center gap-x-1 pl-5 text-sm font-semibold"><MdHomeFilled className="text-2xl" />Home</li>
+      <li className="flex items-center gap-x-1 pl-5 text-sm font-semibold"><IoPersonAdd className="text-2xl"/>Beneficiaries</li>
+      <li className="flex items-center gap-x-1 pl-5 text-sm font-semibold"><PiReceiptFill className="text-2xl" />Transactions</li>
+      <li className="flex items-center gap-x-1 pl-5 text-sm font-semibold"><FaGear className="text-2xl"/>Profile Settings</li>
+      <li className="flex items-center gap-x-1 pl-5 text-sm font-semibold"><IoLogOutSharp className="text-3xl"/>Logout</li>
+    </ul>
+    <div className="h-1/5">
+    
+  </div>
+  </aside>
 
   <main className="px-6 mt-6">
     <div className="bg-orange-500 w-full h-[16rem] rounded-xl text-white p-5 relative">
