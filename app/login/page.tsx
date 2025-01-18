@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import {useRouter} from "next/navigation"
 import Link from "next/link";
+import Logo from '../../public/AFCU.png'
 import { useEffect } from "react";
 import Cookies from "js-cookie"
 import Ladywithcomputer from "../image/pexels-christina-morillo-1181292.jpg"
@@ -71,7 +72,8 @@ export default function Login() {
         alt=""
       />
       <main className="px-6 py-10  md:pl-28 md:w-2/5">
-        <h1 className="text-center text-3xl font-bold">ASAP</h1>
+        <h1 className="text-center text-3xl font-bold">        <Image src={Logo} width={100} className="" alt="AFCU" />
+        </h1>
 
         <h2 className="text-xl font-semibold mb-3 mt-7">
           Log in to your account

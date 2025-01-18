@@ -5,6 +5,8 @@ import { useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import Boardimage from "../image/pexels-christina-morillo-1181396.jpg"
+import Logo from '../../public/AFCU.png'
+
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { auth } from "../mycomps/firebase"
@@ -94,7 +96,8 @@ const onSubmit: SubmitHandler<ISignupinput> = async (data) => {
         />
 
         <main className="px-6 bg-white py-10 md:py-6 ">
-          <h1 className="text-center text-3xl font-bold">ASAP</h1>
+          <h1 className="text-center text-3xl font-bold">        <Image src={Logo} width={100} className="" alt="AFCU" />
+          </h1>
 
           <h2 className="text-xl font-semibold mb-3 mt-7">
             Sign up to access great features
