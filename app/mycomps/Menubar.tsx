@@ -23,7 +23,7 @@ export default function Menubar() {
         <div className="flex  justify-between px-3 bg-white pt-2 text-xl">
           <HiBars3 onClick={handleButtonClick} className="text-3xl" />
           <header className=" font-bold ml-5 text-center">        <Image src={Logo} width={100} className="" alt="AFCU" />
-          ></header>
+          </header>
           <Button className="font-bold text-blue-800" variant={'link'} >
             <Link className="mb-2" href="/login">
               Log in

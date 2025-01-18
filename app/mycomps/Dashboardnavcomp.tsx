@@ -13,11 +13,20 @@ import {ISignupinput} from '../signup/page'
 import Image from "next/image";
 import {Dispatch, SetStateAction, useEffect} from 'react'
 import { RxHamburgerMenu } from "react-icons/rx";
-
+import { auth } from "./firebase";
+import { signOut } from "firebase/auth";
 
 export default function Dashboardnavcomp({user,isOpen,setIsOpen}:{user:ISignupinput,isOpen:boolean,setIsOpen:Dispatch<SetStateAction<boolean>>}){
      const router = useRouter()
      const pathname = usePathname()
+
+
+     const logout =async()=>{
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            router.push('/login')
+          })
+     }
     return(<>
     <nav className="flex justify-between items-center p-6">
     <div className="flex gap-x-6 items-center">
@@ -64,7 +73,7 @@ export default function Dashboardnavcomp({user,isOpen,setIsOpen}:{user:ISignupin
             <FaGear className="text-2xl" />
             Profile Settings
           </li>
-          <li className="flex items-center text-xs gap-x-1 pl-5  font-semibold">
+          <li onClick={()=>logout} className="flex items-center text-xs gap-x-1 pl-5  font-semibold">
             <IoLogOutSharp className="text-3xl" />
             Logout
           </li>
