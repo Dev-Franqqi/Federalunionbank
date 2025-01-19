@@ -88,7 +88,12 @@ const onSubmit: SubmitHandler<ISignupinput> = async (data) => {
     console.log(errors.root)
   },[errors.root])
     return (
-      <div className="bg-white h-screen md:flex">
+      <div className="bg-white h-screen md:flex relative">
+        {isSubmitting && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
         <Image
           src={Boardimage}
           alt=""
