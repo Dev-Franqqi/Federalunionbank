@@ -25,25 +25,24 @@ import eighthimage from "./image/photo-credit-score-675x450.jpg";
 import ninthimage from "./image/photo-child-wearing-yarn-wig-675x450.jpg";
 import { useEffect } from "react";
 import useLoading from "./mycomps/hooks/useLoading";
+import Loadingcomp from "./mycomps/Loadingcomp";
 export default function Home() {
   
-  const {loaded,setLoaded} = useLoading();
+  const {loading,setLoading} = useLoading();
   useEffect(()=>{
-    if(!loaded){
+    
       setTimeout(()=>{
-        setLoaded(true)
+        setLoading(false)
+        console.log(loading)
       },2000)
-    }
-  })
+    
+    
+  },[])
   return (
     <>
 
     {
-      !loaded?(<div className="flex items-center justify-center">
-        <div className="w-20 h-20 bg-black border-b-2 border-gray-200 animate-pulse rounded-full"></div>
-
-        
-      </div>):
+      loading?<Loadingcomp />:
       <>
       <Menubar />
       <Desktopnav />

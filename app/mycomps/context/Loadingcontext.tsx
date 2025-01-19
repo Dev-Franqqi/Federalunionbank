@@ -6,16 +6,16 @@ type Props = {
     children:ReactNode
 }
 
-type Loadedtypes = {
-    loaded:boolean,
-    setLoaded:Dispatch<boolean>
+type Loadingtypes = {
+    loading:boolean,
+    setLoading:Dispatch<boolean>
 }
-export const Loadingcontext = createContext<Loadedtypes>({loaded:false, setLoaded:()=>{}})
+export const Loadingcontext = createContext<Loadingtypes>({loading:false, setLoading:()=>{}})
 
-export default function Loadedcontextprovider({children}:Props){
-    const [loaded, setLoaded] = useState(false)
+export default function loadingcontextprovider({children}:Props){
+    const [loading, setLoading] = useState(true)
     return(
-        <Loadingcontext.Provider value={{loaded,setLoaded}}>
+        <Loadingcontext.Provider value={{loading,setLoading}}>
             {children}
         </Loadingcontext.Provider>
     )
