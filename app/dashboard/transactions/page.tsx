@@ -48,7 +48,7 @@ export default function Dashboard(){
 
 
   
- <Dashboardnavcomp user={user!} isOpen={isOpen} setIsOpen={setIsOpen} />
+ <Dashboardnavcomp  />
  
       
 
