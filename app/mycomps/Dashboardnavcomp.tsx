@@ -15,11 +15,14 @@ import {Dispatch, SetStateAction, useEffect} from 'react'
 import { RxHamburgerMenu } from "react-icons/rx";
 import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
+import useUser from "./hooks/useUser";
+import useOpen from './hooks/useOpen'
 
-export default function Dashboardnavcomp({user,isOpen,setIsOpen}:{user:ISignupinput,isOpen:boolean,setIsOpen:Dispatch<SetStateAction<boolean>>}){
+export default function Dashboardnavcomp(){
      const router = useRouter()
      const pathname = usePathname()
-
+     const {user,setUser} = useUser()
+     const {isOpen,setIsOpen} = useOpen()
 
      const logout =async()=>{
         signOut(auth).then(() => {
@@ -27,7 +30,7 @@ export default function Dashboardnavcomp({user,isOpen,setIsOpen}:{user:ISignupin
             router.push('/login')
           })
      }
-    return(<>
+    return(<div className='md:hidden'>
     <nav className="flex justify-between items-center p-6">
     <div className="flex gap-x-6 items-center">
       <FaBell className="text-2xl" />
@@ -83,5 +86,5 @@ export default function Dashboardnavcomp({user,isOpen,setIsOpen}:{user:ISignupin
       
     
     
-    </>)
+    </div>)
 }

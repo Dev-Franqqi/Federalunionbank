@@ -70,7 +70,7 @@ export default function Desktopnav() {
                 
                 {errors.root && <p className="text-red-600 mt-4 border border-red-200 rounded-md p-4">{errors.root.message}</p>}
                               
-                              <form>
+                              <form onSubmit={handleSubmit(onSubmit)}>
                                   <Input {...register('email')} className="mt-8 mb-4" placeholder="Email or Username" type="text" />
                                   <Input
             type="password"

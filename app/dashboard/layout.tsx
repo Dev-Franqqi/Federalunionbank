@@ -1,8 +1,5 @@
 import type { Metadata } from 'next'
-// import {Inter} from "next/font"
-import Loadedcontextprovider from './mycomps/context/Loadingcontext'
-import Usercontextprovider from './mycomps/context/Usercontext'
-import './globals.css'
+import Opencontextprovider from '../mycomps/context/Opencontext';
 
 
 
@@ -19,13 +16,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className='bg-gray-100'>
-        <Loadedcontextprovider>
-          <Usercontextprovider>
+       
+        <Opencontextprovider>
 
         {children}
-          </Usercontextprovider>
-
-        </Loadedcontextprovider>
+        </Opencontextprovider>
+         
       </body>
     </html>
   );

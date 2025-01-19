@@ -20,9 +20,14 @@ import {
 import TabSwitcher from "../mycomps/TabsSwitcher";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useRouter } from "next/navigation";
+import useUser from "../mycomps/hooks/useUser";
+import useOpen from "../mycomps/hooks/useOpen";
+
+
+
 export default function Dashboard(){
-  const [user,setUser] = useState<ISignupinput>()
-  const [isOpen, setIsOpen] = useState(false);
+  const {user,setUser} = useUser()
+  const {isOpen,setIsOpen} =useOpen()
   const pathname = usePathname()
   const router = useRouter() 
   useEffect(()=>{
@@ -39,11 +44,11 @@ export default function Dashboard(){
   },[pathname])
 
   return<>
-<Dashboardnavcomp user={user!} isOpen={isOpen} setIsOpen={setIsOpen} />
+<Dashboardnavcomp />
 
   
 
-  <main onClick={()=>setIsOpen((prev)=>!prev)} className="px-6 mt-6">
+  <main onClick={()=>setIsOpen(false)} className="px-6 mt-6">
     <div className="bg-orange-500 w-full h-[16rem] rounded-xl text-white p-5 relative">
 
       <div className="font-medium text-sm">
