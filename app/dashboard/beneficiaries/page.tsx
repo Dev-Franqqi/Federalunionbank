@@ -3,24 +3,28 @@ import Dashboardnavcomp from "@/app/mycomps/Dashboardnavcomp"
 import { FaAngleLeft } from "react-icons/fa";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-
+import { AiOutlineSearch } from 'react-icons/ai';
+import { Button } from "@/components/ui/button";
+import EmptyBeneficiary from '../../../public/EmptyBeneficiary.png'
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 export default function Beneficiaries(){
-
+  const router = useRouter()
 
 
     return(
         <>
         <Dashboardnavcomp />
 
-            <div className="flex gap-x-2 items-center pt-6 py-3 px-6">
+            <div onClick={()=>router.push('/dashboard')} className=" cursor-pointer flex gap-x-2 items-center pt-6 py-3 px-6" >
                 <FaAngleLeft />
 
-            <p className="text-sm font-semibold">Back</p>
+            <p className="text-sm font-semibold text-orange-600">Back</p>
             </div>
         <main className="px-6">
             <h1 className="text-xl font-bold">Beneficiatries</h1>
 
-            <div>
+            <div className="bg-white ">
             <TabSwitcher />
 
             </div>
@@ -35,7 +39,7 @@ export default function Beneficiaries(){
 
 const TabSwitcher = () => {
   // State to keep track of the active tab
-  const [activeTab, setActiveTab] = useState("Account");
+  const [activeTab, setActiveTab] = useState("Transfer");
 
   // Function to handle tab changes
   const handleTabClick = (tabName:string) => {
@@ -48,19 +52,19 @@ const TabSwitcher = () => {
       <div className="w-full py-3 px-4 flex justify-between ">
         <div
           className={`text-xs cursor-pointer py-3  text-center font-medium w-1/4 ${
-            activeTab === "Account" ? " text-orange-600 border-b border-b-orange-600" : ""
+            activeTab === "Transfer" ? " text-orange-600 border-b border-b-orange-600" : ""
           }`}
-          onClick={() => handleTabClick("Account")}
+          onClick={() => handleTabClick("Transfer")}
         >
           Transfer
         </div>
         <div
           className={`text-xs cursor-pointer py-3  text-center font-medium w-1/4 ${
-            activeTab === "Transfers" ? " text-orange-600 border-b border-b-orange-600" : ""
+            activeTab === "FCY" ? " text-orange-600 border-b border-b-orange-600" : ""
           }`}
-          onClick={() => handleTabClick("Transfers")}
+          onClick={() => handleTabClick("FCY")}
         >
-          Transfers
+          FCY
         </div>
         <div
           className={`text-xs cursor-pointer py-3  text-center font-medium w-1/4 ${
@@ -70,25 +74,40 @@ const TabSwitcher = () => {
         >
           Bill Payments
         </div>
-        <div
-          className={`text-xs cursor-pointer py-3  text-center font-medium w-1/4 ${
-            activeTab === "Lifestyle" ? " text-orange-600 border-b border-b-orange-600" : ""
-          }`}
-          onClick={() => handleTabClick("Lifestyle")}
-        >
-          Lifestyle
-        </div>
+      
       </div>
 
       {/* Content Section */}
       <div className="mt-5">
-        {activeTab === "Account" && <p>Transfer</p>}
-        {activeTab === "Transfers" && <p>FCY</p>}
+        {activeTab === "Transfer" && <Transfer />}
+        {activeTab === "FCY" && <p className="font-medium px-6">Coming Soon!</p>}
         
-        {activeTab === "Lifestyle" && <p>Bill payments</p>}
+        {activeTab === "Bill Payments" && <p className="font-medium px-6">Coming Soon!</p>}
       </div>
     </section>
   );
+
 };
 
+
+const Transfer = ()=>{
+  return(
+    <section className="p-4">
+     <div className="relative w-full">
+      <AiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl" />
+      <Input
+        type="text"
+        className="w-full pl-10 pr-4 py-6 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Search"
+      />
+    </div>
+    <Button className=" w-full py-6 mt-4 bg-orange-500 text-white font-semibold">Add beneficiary</Button>
+     
+     <div className="py-8 mt-10">
+      <Image src={EmptyBeneficiary} alt='' className="mx-auto " />
+
+     </div>
+    </section>
+  )
+}
 

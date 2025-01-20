@@ -17,7 +17,7 @@ import { auth } from "./firebase";
 import { signOut } from "firebase/auth";
 import useUser from "./hooks/useUser";
 import useOpen from './hooks/useOpen'
-
+import Cookies from "js-cookie";
 export default function Dashboardnavcomp(){
      const router = useRouter()
      const pathname = usePathname()
@@ -34,6 +34,12 @@ export default function Dashboardnavcomp(){
      }
      useEffect(()=>{
         setIsOpen(false)
+        const Usercookie = Cookies.get('User')
+        if(Usercookie){
+          setUser(JSON.parse(Usercookie))
+        }else{
+          router.push('/login')
+        }
      },[])
     return(<div className='md:hidden'>
     <nav className="flex justify-between items-center p-6">

@@ -49,7 +49,7 @@ export default function Dashboard(){
   
 
   <main onClick={()=>setIsOpen(false)} className="px-6 mt-6">
-    <div className="bg-orange-500 w-full h-[16rem] rounded-xl text-white p-5 relative">
+    <div className=" bg-amber-600 w-full h-[16rem] rounded-xl text-white p-5 relative">
 
       <div className="font-medium text-sm">
 
