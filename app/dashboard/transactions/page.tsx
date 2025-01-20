@@ -33,12 +33,12 @@ export default function Dashboard(){
 
   
  <Dashboardnavcomp  />
-   <div onClick={()=>router.push('/dashboard')} className=" cursor-pointer flex gap-x-2 items-center pt-6 py-3 px-6" >
+   <div onClick={()=>router.push('/dashboard')} className=" cursor-pointer flex gap-x-2 items-center pt-6 py-3 px-4" >
                  <FaAngleLeft />
  
              <p className="text-sm font-semibold text-orange-600">Back</p>
              </div>
-         <main className="px-6">
+         <main className="px-4">
              <h1 className="text-xl font-bold">Transaction History</h1>
  
              <div className="bg-white ">

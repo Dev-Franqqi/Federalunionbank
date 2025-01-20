@@ -14,9 +14,9 @@ const TabSwitcher = () => {
   };
 
   return (
-    <section className="px-5 py-5">
+    <section className="px-3 py-5">
       {/* Tabs */}
-      <div className="w-full py-3 px-4 flex justify-between ">
+      <div className="w-full py-3 px-2 flex justify-between ">
         <div
           className={`text-xs cursor-pointer py-3 rounded-xl text-center font-medium w-1/4 ${
             activeTab === "Account" ? "bg-orange-100 text-orange-600" : ""

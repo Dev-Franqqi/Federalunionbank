@@ -16,13 +16,13 @@ export default function Beneficiaries(){
         <>
         <Dashboardnavcomp />
 
-            <div onClick={()=>router.push('/dashboard')} className=" cursor-pointer flex gap-x-2 items-center pt-6 py-3 px-6" >
+            <div onClick={()=>router.push('/dashboard')} className=" cursor-pointer flex gap-x-2 items-center pt-6 py-3 px-4" >
                 <FaAngleLeft />
 
             <p className="text-sm font-semibold text-orange-600">Back</p>
             </div>
-        <main className="px-6">
-            <h1 className="text-xl font-bold">Beneficiatries</h1>
+        <main className="px-4">
+            <h1 className="text-xl font-bold mb-2">Beneficiaries</h1>
 
             <div className="bg-white ">
             <TabSwitcher />
@@ -47,9 +47,9 @@ const TabSwitcher = () => {
   };
 
   return (
-    <section className="px-5 py-5">
+    <section className="px-2 py-5">
       {/* Tabs */}
-      <div className="w-full py-3 px-4 flex justify-between ">
+      <div className="w-full py-3 px-2 flex justify-between ">
         <div
           className={`text-xs cursor-pointer py-3  text-center font-medium w-1/4 ${
             activeTab === "Transfer" ? " text-orange-600 border-b border-b-orange-600" : ""
@@ -92,7 +92,7 @@ const TabSwitcher = () => {
 
 const Transfer = ()=>{
   return(
-    <section className="p-4">
+    <section className="py-4 px-2">
      <div className="relative w-full">
       <AiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl" />
       <Input

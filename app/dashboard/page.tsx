@@ -48,8 +48,8 @@ export default function Dashboard(){
 
   
 
-  <main onClick={()=>setIsOpen(false)} className="px-6 mt-6">
-    <div className=" bg-amber-600 w-full h-[16rem] rounded-xl text-white p-5 relative">
+  <main onClick={()=>setIsOpen(false)} className="px-4 mt-6">
+    <div className=" bg-amber-600 w-full h-[16rem] rounded-xl text-white px-3 py-5 relative">
 
       <div className="font-medium text-sm">
 
@@ -57,7 +57,7 @@ export default function Dashboard(){
       <p>{user?user.accountNumber:"N/A"}</p>
       </div>
 
-      <div className="w-full h-fit px-4 py-2 mt-4 text-sm bg-black rounded-2xl flex justify-between">
+      <div className="w-full h-fit px-2 py-2 mt-4 text-sm bg-black rounded-2xl flex justify-between">
         <p className="font-medium">Premier Savings</p>
         <DropdownMenu>
   <DropdownMenuTrigger><IoIosArrowDropdown className="text-lg font-medium"/></DropdownMenuTrigger>
@@ -86,7 +86,7 @@ export default function Dashboard(){
 
     </div>
 
-    <div className="mt-8 border rounded-lg px-5 py-5">
+    <div className="mt-8 border rounded-lg px-3 py-5">
       <p className="font-medium">Recent Transactions</p>
       <div className="w-full h-[8rem]">
         <Skeleton className="w-full h-[6rem] mt-4"/>
