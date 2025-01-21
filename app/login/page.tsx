@@ -143,7 +143,7 @@ export default function Login() {
         </p>
         <footer className="bg-white text-center mt-10">
           <p className="text-gray-300">
-            &copy;2025 ASAP Bank. All rights reserved
+            &copy;2025 AFCU Bank. All rights reserved
           </p>
         </footer>
       </main>

@@ -212,7 +212,7 @@ const onSubmit: SubmitHandler<ISignupinput> = async (data) => {
           </form>
 
           <footer className="mt-2 text-center text-gray-300">
-            &copy;2025 ASAP Bank
+            &copy;2025 AFCU Bank
           </footer>
         </main>
       </div>

@@ -49,15 +49,15 @@ export default function Dashboard(){
   
 
   <main onClick={()=>setIsOpen(false)} className="px-4 mt-6">
-    <div className=" bg-amber-600 w-full h-[16rem] rounded-xl text-white px-3 py-5 relative">
+    <div className=" bg-orange-500 w-full h-[16rem] rounded-xl text-white px-3 py-5 relative">
 
       <div className="font-medium text-sm">
 
       <p>Regular</p>
-      <p>{user?user.accountNumber:"N/A"}</p>
+      <p className='text-xs'>{user?user.accountNumber:"N/A"}</p>
       </div>
 
-      <div className="w-full h-fit px-2 py-2 mt-4 text-sm bg-black rounded-2xl flex justify-between">
+      <div className="w-full h-fit px-2 py-2 mt-4 text-sm bg-black bg-opacity-40 rounded-2xl flex justify-between">
         <p className="font-medium">Premier Savings</p>
         <DropdownMenu>
   <DropdownMenuTrigger><IoIosArrowDropdown className="text-lg font-medium"/></DropdownMenuTrigger>
@@ -74,13 +74,24 @@ export default function Dashboard(){
       </div>
       <p className="text-lg mt-2 font-bold tracking-tighter "><span className="font-medium w-1/4 ">$</span>{user? `${user.amount}`:'N/A'}</p>
 
-      <div className="flex gap-x-2 mx-auto w-fit">
+      <div className="flex gap-x-4 mx-auto w-fit">
+        <div onClick={()=>router.push('/dashboard')}>
         <div className="w-[3rem] h-[3rem] bg-white rounded-2xl flex flex-col justify-center">
         <TfiReceipt className="text-black text-center text-lg mx-auto" />
+          
         </div>
-        <div className="w-[3rem] h-[3rem] bg-white rounded-lg flex flex-col justify-center">
+        <p className='text-white text-xs font-medium'>Pay bills</p>
+        </div>
+
+
+      <div onClick={()=>router.push('dashboard/transfers')}>
+
+        <div className="w-[3rem] h-[3rem] bg-white rounded-2xl flex flex-col justify-center">
         <FaRegArrowAltCircleUp className="text-black text-center text-2xl mx-auto" />
+      </div>
+        <p className='text-white text-xs font-medium'>Transfers</p>
         </div>
+
       </div>
 
 

@@ -20,7 +20,7 @@ export default function Menubar() {
   return (
     <>
       <nav className="fixed z-10 w-screen md:hidden">
-        <div className="flex  justify-between px-3 bg-white pt-2 text-xl">
+        <div className="flex  justify-between items-center px-3 bg-white pt-2 text-xl">
           <HiBars3 onClick={handleButtonClick} className="text-3xl" />
           <header className=" font-bold ml-5 text-center">        <Image src={Logo} width={100} className="" alt="AFCU" />
           </header>

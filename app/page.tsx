@@ -294,7 +294,7 @@ export default function Home() {
         <p>800 Nicollet Mall</p>
         <div className="flex gap-2">
           <p>Minneapolis, MN 55402</p>
-          <p>2023 ASAP Bank</p>
+          <p>2025 AFCU Bank</p>
         </div>
       </footer>
       </>

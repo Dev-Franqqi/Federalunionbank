@@ -14,8 +14,10 @@ import { updatePassword } from "firebase/auth";
 import { Button } from "@/components/ui/button";
 export default function Profile(){
     const {user,setUser} = useUser()
-    const router = useRouter()
+    const router = useRouter();
+    
     useEffect(()=>{
+
         const Usercookies = Cookies.get("User")
         if(!user){
             if(Usercookies){

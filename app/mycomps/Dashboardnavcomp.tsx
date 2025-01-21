@@ -9,6 +9,8 @@ import { PiReceiptFill } from "react-icons/pi";
 import Logo from '../../public/AFCU.png'
 import {motion} from 'framer-motion'
 import { useRouter,usePathname } from "next/navigation";
+import { IoIosClose } from "react-icons/io";
+
 import {ISignupinput} from '../signup/page'
 import Image from "next/image";
 import {Dispatch, SetStateAction, useEffect, useState} from 'react'
@@ -59,35 +61,37 @@ export default function Dashboardnavcomp(){
       </div>
     </div>
 
-    <RxHamburgerMenu onClick={()=>setIsOpen((prev)=>!prev)} className="text-2xl font-medium"/>
+    <RxHamburgerMenu onClick={()=>setIsOpen(true)} className={isOpen?"text-2xl font-medium":"hidden"}/>
+      <IoIosClose onClick={()=>setIsOpen(false)} className={!isOpen?"text-2xl font-medium":"hidden"} />
 
   </nav>
   <motion.aside
-        className="w-3/5 bg-gray-200 h-screen absolute z-10 top-0 flex flex-col justify-between"
+        className="w-3/5 bg-gray-100 h-screen absolute z-10 top-0 flex flex-col justify-between"
         initial={{ x: "-100%" }} // Start off-screen
         animate={{ x: isOpen ? "0%" : "-100%" }} // Slide in or out
         transition={{ type: "spring", stiffness: 300, damping: 30 }} // Smooth animation
       >
         {/* Your aside content */}
         <Image src={Logo} width={100} className="ml-4 mt-4" alt="AFCU" />
-        <ul className="h-3/5 flex flex-col justify-between">
-          <li className={"cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-semibold" + (pathname === "/dashboard" ? "text-orange-600" : "")}>
-            <MdHomeFilled className="text-2xl"  onClick={()=>router.push('/dashboard')}/>
+        <ul className="h-2/5 flex flex-col justify-between">
+       
+          <li className="cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-medium" onClick={()=>router.push('/dashboard/beneficiaries')}>
+          <MdHomeFilled className="text-2xl"  onClick={()=>router.push('/dashboard')}/>
             Home
           </li>
-          <li className="cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-semibold" onClick={()=>router.push('/dashboard/beneficiaries')}>
+          <li className="cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-medium" onClick={()=>router.push('/dashboard/beneficiaries')}>
             <IoPersonAdd className="text-2xl" />
             Beneficiaries
           </li>
-          <li className={"cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-semibold"}onClick={()=>router.push('/dashboard/transactions')} >
+          <li className={"cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-medium"}onClick={()=>router.push('/dashboard/transactions')} >
             <PiReceiptFill className="text-2xl" />
             Transactions
           </li>
-          <li className="cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-semibold" onClick={()=>router.push('/dashboard/settings')}>
+          <li className="cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-medium" onClick={()=>router.push('/dashboard/settings')}>
             <FaGear className="text-2xl" />
             Profile Settings
           </li>
-          <li onClick={logout} className="cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-semibold">
+          <li onClick={logout} className="cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-medium">
             <IoLogOutSharp className="text-3xl" />
             Logout
           </li>
