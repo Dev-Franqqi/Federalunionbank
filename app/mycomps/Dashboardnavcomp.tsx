@@ -61,8 +61,13 @@ export default function Dashboardnavcomp(){
       </div>
     </div>
 
-    <RxHamburgerMenu onClick={()=>setIsOpen(true)} className={isOpen?"text-2xl font-medium":"hidden"}/>
-      <IoIosClose onClick={()=>setIsOpen(false)} className={!isOpen?"text-2xl font-medium":"hidden"} />
+  {
+    isOpen ? 
+    <IoIosClose onClick={()=>setIsOpen(false)} className={"text-2xl font-medium"} />:
+    <RxHamburgerMenu onClick={()=>setIsOpen(true)} className={"text-2xl font-medium"}/>
+
+  }
+
 
   </nav>
   <motion.aside
