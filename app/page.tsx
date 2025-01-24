@@ -209,7 +209,7 @@ export default function Home() {
         </h3>
         <p className="mb-8 text-sm md:text-lg">
           From calculators and rate charts to get you started, to experienced
-          loan officers and bankers, Asap bank has answers for all your loan and
+          loan officers and bankers,  bank has answers for all your loan and
           mortgage questions.
         </p>
         <p className="text-sm font-semibold mb-1 md:text-lg">Home mortgage</p>
@@ -292,7 +292,7 @@ export default function Home() {
         </div>
 
         <hr className="mb-7" />
-        <p>ASAP bank</p>
+        <p>AFCU bank</p>
         <p>800 Nicollet Mall</p>
         <div className="flex gap-2">
           <p>Minneapolis, MN 55402</p>
