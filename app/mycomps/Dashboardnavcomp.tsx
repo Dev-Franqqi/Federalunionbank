@@ -31,6 +31,7 @@ export default function Dashboardnavcomp(){
         signOut(auth).then(() => {
             // Sign-out successful.
             console.log('logging out')
+            Cookies.remove('User')
             router.push('/login')
           })
      }
@@ -43,7 +44,7 @@ export default function Dashboardnavcomp(){
           router.push('/login')
         }
      },[])
-    return(<div className='md:hidden'>
+    return(<div className=''>
     <nav className="flex justify-between items-center p-6">
     <div className="flex gap-x-6 items-center">
       <FaBell className="text-2xl" />
@@ -63,15 +64,15 @@ export default function Dashboardnavcomp(){
 
   {
     isOpen ? 
-    <IoIosClose onClick={()=>setIsOpen(false)} className={"text-2xl font-medium"} />:
-    <RxHamburgerMenu onClick={()=>setIsOpen(true)} className={"text-2xl font-medium"}/>
+    <IoIosClose onClick={()=>setIsOpen(false)} className={"text-2xl font-medium md:hidden"} />:
+    <RxHamburgerMenu onClick={()=>setIsOpen(true)} className={"text-2xl font-medium md:hidden"}/>
 
   }
 
 
   </nav>
   <motion.aside
-        className="w-3/5 bg-gray-100 h-screen absolute z-10 top-0 flex flex-col justify-between"
+        className="w-3/5 bg-gray-100 h-screen absolute z-10 top-0 flex flex-col justify-between md:hidden"
         initial={{ x: "-100%" }} // Start off-screen
         animate={{ x: isOpen ? "0%" : "-100%" }} // Slide in or out
         transition={{ type: "spring", stiffness: 300, damping: 30 }} // Smooth animation

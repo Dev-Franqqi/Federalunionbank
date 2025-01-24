@@ -7,6 +7,8 @@ import { useForm,SubmitHandler } from "react-hook-form";
 import { useEffect } from "react";
 import { auth } from "./firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { db } from "./firebase";
+import { getDoc,doc } from "firebase/firestore";
 import {
   Sheet,
   SheetContent,
@@ -23,27 +25,33 @@ import {useRouter} from "next/navigation"
 export default function Desktopnav() {
   const router = useRouter()
   const {register,handleSubmit,setError,formState:{errors,isSubmitting}} = useForm<ILogininput>()
-   const onSubmit :SubmitHandler<ILogininput> =async(data)=>{
-        try{
-          await signInWithEmailAndPassword(auth,data.email,data.password)
-          .then(()=>{
-            router.push('/dashboard')
-          })
-        }catch(error:any){
-          console.log(error.message)
-          if(error.message === "Firebase: Error (auth/invalid-credential)."){
-            setError('root', {
-              type: 'manual',
-              message: 'Email or passord incorrect.',
-            });
-  
-            
-          }else{
-  
-            setError("root",error.message)
-          }
-        }
+  const onSubmit: SubmitHandler<ILogininput> = async (data) => {
+    try {
+      const userDoc = await getDoc(doc(db, "UserInfo", data.email));
+      if (userDoc.exists()) {
+        Cookies.set("User", JSON.stringify(userDoc.data()));
+      } else {
+        throw new Error("User not found");
       }
+
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+      router.push("/dashboard");
+    } catch (error: any) {
+      console.error(error.message);
+
+      if (error.code === "auth/invalid-credential") {
+        setError("root", {
+          type: "manual",
+          message: "Email or password incorrect.",
+        });
+      } else {
+        setError("root", {
+          type: "manual",
+          message: error.message || "An unexpected error occurred.",
+        });
+      }
+    }
+  };
  
  useEffect(()=>{
  },[])

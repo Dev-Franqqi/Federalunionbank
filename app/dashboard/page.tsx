@@ -6,7 +6,9 @@ import { FaRegArrowAltCircleUp } from "react-icons/fa";
 import { IoIosArrowDropdown } from "react-icons/io";
 import { useEffect,useState } from "react";
 import Cookies from "js-cookie";
-import { ISignupinput } from "../signup/page";
+
+import { signOut } from "firebase/auth";
+import {auth} from "../mycomps/firebase";
 import Dashboardnavcomp from "../mycomps/Dashboardnavcomp";
 import {
   DropdownMenu,
@@ -22,6 +24,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useRouter } from "next/navigation";
 import useUser from "../mycomps/hooks/useUser";
 import useOpen from "../mycomps/hooks/useOpen";
+import Dashboarddesktop from "../mycomps/Dashboarddesktop";
 
 
 
@@ -30,6 +33,7 @@ export default function Dashboard(){
   const {isOpen,setIsOpen} =useOpen()
   const pathname = usePathname()
   const router = useRouter() 
+ 
   useEffect(()=>{
     console.log(pathname,typeof(pathname))
     const userCookie = Cookies.get('User')
@@ -44,12 +48,22 @@ export default function Dashboard(){
   },[pathname])
 
   return<>
-<Dashboardnavcomp />
+<div className="md:flex">
+<Dashboarddesktop />
+
 
   
+<div className="md:w-4/5 ">
+  <div className="block md:flex md:justify-between md:items-center">
+
+  <h1 className="font-semibold">Hello {user.firstname}</h1>
+<Dashboardnavcomp />
+  </div>
+
 
   <main onClick={()=>setIsOpen(false)} className="px-4 mt-6">
-    <div className=" bg-orange-500 w-full h-[16rem] rounded-xl text-white px-3 py-5 relative">
+    <div className="md:flex">
+    <div className=" bg-orange-500 w-full h-[16rem] rounded-xl text-white px-3 py-5 relative md:w-2/5">
 
       <div className="font-medium text-sm">
 
@@ -97,17 +111,20 @@ export default function Dashboard(){
 
     </div>
 
-    <div className="mt-8 border rounded-lg px-3 py-5">
+    <div className="mt-8 border rounded-lg px-3 py-5 md:w-full md:ml-4">
       <p className="font-medium">Recent Transactions</p>
       <div className="w-full h-[8rem]">
         <Skeleton className="w-full h-[6rem] mt-4"/>
       </div>
 
     </div>
+    </div>
   </main>
   <TabSwitcher />
+  </div>
 
   
+</div>
   
   </>
 }

@@ -4,6 +4,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import {FaAngleLeft} from 'react-icons/fa'
 import { useEffect,useState } from "react";
 import Cookies from "js-cookie";
+import Dashboarddesktop from "@/app/mycomps/Dashboarddesktop";
 import { InfoIcon } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import EmptyBeneficiary from '../../../public/EmptyBeneficiary.png'
@@ -31,8 +32,17 @@ export default function Dashboard(){
   return<>
 
 
-  
- <Dashboardnavcomp  />
+<div className="flex">
+          <Dashboarddesktop />
+        <div className="md:w-3/5 ">
+        <div className="md:flex md:justify-between md:items-center">
+          <h1 className="font-semibold hidden md:block ">
+
+          Hello {user.firstname}
+          </h1>
+
+        <Dashboardnavcomp />
+        </div>
    <div onClick={()=>router.push('/dashboard')} className=" cursor-pointer flex gap-x-2 items-center pt-6 py-3 px-4" >
                  <FaAngleLeft />
  
@@ -71,6 +81,8 @@ export default function Dashboard(){
      </div>
              </div>
          </main>
+         </div>
+         </div>
       
 
 

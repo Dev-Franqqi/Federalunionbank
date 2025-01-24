@@ -96,12 +96,13 @@ const onSubmit: SubmitHandler<ISignupinput> = async (data) => {
       )}
         <Image
           src={Boardimage}
+          
           alt=""
           className="hidden md:block md:h-full md:w-3/5 md:object-cover"
         />
 
         <main className="px-6 bg-white py-10 md:py-6 ">
-          <h1 className="text-center text-3xl font-bold">        <Image src={Logo} width={100} className="" alt="AFCU" />
+          <h1 className="text-center text-3xl font-bold">        <Image src={Logo}onClick={()=>router.push("/")}  width={100} className=" cursor-pointer" alt="AFCU" />
           </h1>
 
           <h2 className="text-xl font-semibold mb-3 mt-7">

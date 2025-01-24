@@ -80,7 +80,7 @@ export default function Login() {
       />
       <main className="px-6 py-10 md:pl-28 md:w-2/5">
         <h1 className="text-center text-3xl font-bold">
-          <Image src={Logo} width={100} className="" alt="AFCU" />
+          <Image src={Logo} onClick={()=>router.push('/')} width={100} className="cursor-pointer" alt="AFCU" />
         </h1>
 
         <h2 className="text-xl font-semibold mb-3 mt-7">

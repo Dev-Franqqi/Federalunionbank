@@ -8,13 +8,22 @@ import { Button } from "@/components/ui/button";
 import EmptyBeneficiary from '../../../public/EmptyBeneficiary.png'
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Dashboarddesktop from "@/app/mycomps/Dashboarddesktop";
 export default function Beneficiaries(){
   const router = useRouter()
 
 
     return(
         <>
+        <div className="md:flex">
+          <Dashboarddesktop />
+          
+
+        <div className="md:w-3/5 ">
+        <div>
         <Dashboardnavcomp />
+
+        </div>
 
             <div onClick={()=>router.push('/dashboard')} className=" cursor-pointer flex gap-x-2 items-center pt-6 py-3 px-4" >
                 <FaAngleLeft />
@@ -29,6 +38,9 @@ export default function Beneficiaries(){
 
             </div>
         </main>
+        </div>
+        </div>
+
         
         </>
     )

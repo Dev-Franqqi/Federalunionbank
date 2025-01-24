@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { auth } from "@/app/mycomps/firebase";
 import { updatePassword } from "firebase/auth";
 import { Button } from "@/components/ui/button";
+import Dashboarddesktop from "@/app/mycomps/Dashboarddesktop";
 export default function Profile(){
     const {user,setUser} = useUser()
     const router = useRouter();
@@ -31,7 +32,17 @@ export default function Profile(){
 
     return(
         <>
+        <div className="flex">
+          <Dashboarddesktop />
+        <div className="md:w-3/5 ">
+        <div className="md:flex md:justify-between md:items-center">
+          <h1 className="font-semibold hidden md:block ">
+
+          Hello {user.firstname}
+          </h1>
+
         <Dashboardnavcomp />
+        </div>
         <main className=" py-6 px-2">
              <div onClick={()=>router.push('/dashboard')} className=" cursor-pointer flex gap-x-2 items-center pt-6 py-3 px-6" >
                              <FaAngleLeft />
@@ -68,6 +79,9 @@ export default function Profile(){
                 <TabSwitcher />
             </div>
         </main>
+        </div>
+        </div>
+
 
         </>
     )
