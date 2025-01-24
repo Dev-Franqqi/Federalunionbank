@@ -199,7 +199,7 @@ const onSubmit: SubmitHandler<ISignupinput> = async (data) => {
            <label className="text-sm" htmlFor="Pin">
               Pin
             </label>
-           <Input className="w-2/4" type="number" {...register('pin',{maxLength:{value:4,message:"Pin should be a 4 digit number"}})}/>
+           <Input className="w-2/4" type="number" required {...register('pin',{maxLength:{value:4,message:"Pin should be a 4 digit number"}})}/>
            {errors.pin && <p className="text-red-600">{errors.pin.message}</p>}
            </div>
 

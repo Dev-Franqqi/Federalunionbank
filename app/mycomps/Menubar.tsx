@@ -10,6 +10,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Logo from '../../public/AFCU.png'
 import Image from "next/image";
+
 export default function Menubar() {
   const [isElementVisible, setIsElementVisible] = useState(false);
 
@@ -67,7 +68,9 @@ export default function Menubar() {
 
         <ul className=" mt-4 font-bold text-lg">
           <li className="border-b flex justify-between py-4">
+            <Link href='/personal'>
             Personal <IoIosArrowForward className="mt-2" />
+            </Link>
           </li>
           <li className="border-b flex justify-between py-4">
             Wealth Management <IoIosArrowForward className="mt-2" />

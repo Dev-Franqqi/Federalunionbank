@@ -8,6 +8,7 @@ import { PiPiggyBank } from "react-icons/pi";
 import { MdOutlineHome } from "react-icons/md";
 import { BsCashStack } from "react-icons/bs";
 import { CiMoneyCheck1 } from "react-icons/ci";
+import { useRouter } from "next/navigation";
 import { CiMobile3 } from "react-icons/ci";
 import { GoDeviceDesktop } from "react-icons/go";
 import Menubar from "./mycomps/Menubar";
@@ -27,6 +28,7 @@ import { useEffect } from "react";
 import useLoading from "./mycomps/hooks/useLoading";
 import Loadingcomp from "./mycomps/Loadingcomp";
 export default function Home() {
+  const router = useRouter();
   
   const {loading,setLoading} = useLoading();
   useEffect(()=>{
@@ -82,7 +84,7 @@ export default function Home() {
           <h3 className="font-bold text-xl">
             Get exclusive benefits with your checking account.
           </h3>
-          <Link className="hover:underline text-blue-700 " href="/">
+          <Link className="hover:underline text-blue-700 " href="/signup">
             Enroll now <IoIosArrowForward className="inline" />
           </Link>
         </section>
@@ -171,7 +173,7 @@ export default function Home() {
           <p className="text-gray-700 text-sm">
             Apply in minutes with just $25.
           </p>
-          <Button className="bg-blue-700 text-white mt-4 w-full">
+          <Button onClick={()=>router.push('/signup')} className="bg-blue-700 text-white mt-4 w-full">
             Open a checking account
           </Button>
         </div>
@@ -186,7 +188,7 @@ export default function Home() {
             <span className="flex gap-x-2 ">
               <CiMobile3 className="text-3xl" /> <span>Online banking</span>
             </span>
-            <Link href="/" className="block text-blue-500">
+            <Link href="/login" className="block text-blue-500">
               Access your accounts <IoIosArrowForward className="inline" />
             </Link>
           </li>

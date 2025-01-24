@@ -9,6 +9,9 @@ import { auth } from "./firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { db } from "./firebase";
 import { getDoc,doc } from "firebase/firestore";
+import Logo from '../../public/AFCU.png'
+
+import Image from "next/image";
 import {
   Sheet,
   SheetContent,
@@ -101,9 +104,9 @@ export default function Desktopnav() {
         </div>
 
         <nav className="bg-white gap-4 flex py-2 px-10">
-          <header>ASAP</header>
+          <Image src={Logo} alt="AFCU" width={100} height={100} />
           <ul className="flex gap-6">
-            <li>Personal</li>
+            <li><Link href='/personal'>Personal</Link></li>
             <li>Wealth Management</li>
             <li>Business</li>
             <li>Corporate & Commercial</li>
