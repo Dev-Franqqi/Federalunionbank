@@ -64,7 +64,7 @@ export default function Transfers(){
     <Alert className="flex items-center py-3 mt-4">
   <InfoIcon className="h-4 w-4 text-lg" />
   <AlertDescription className='text-xs mt-2'>
-  Dear Customer, a token is required to complete this transaction. Don&apos;t have a token? Please call our Contact Center 
+  Dear Customer, a transfer key is required to complete this transaction. 
   </AlertDescription>
 </Alert>
 
