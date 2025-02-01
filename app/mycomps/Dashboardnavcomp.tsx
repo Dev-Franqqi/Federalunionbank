@@ -99,10 +99,10 @@ export default function Dashboardnavcomp(){
             <FaGear className="text-2xl" />
             Profile Settings
           </li>
-          <li className="cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-medium" onClick={()=>router.push('/dashboard/givesendgo')}>
+          {/* <li className="cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-medium" onClick={()=>router.push('/dashboard/givesendgo')}>
             <FaHandHoldingHeart className="text-2xl" />
             Donate
-          </li>
+          </li> */}
           <li onClick={logout} className="cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-medium">
             <IoLogOutSharp className="text-3xl" />
             Logout

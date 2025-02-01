@@ -3,14 +3,14 @@ import { IoIosSearch } from "react-icons/io";
 import Image from "next/image";
 import {motion} from "framer-motion";
 import { Button } from "@/components/ui/button";
-import Givesendgoimg from '../../../public/givesendgo.png'
-import ROY from '../../../public/ROY.webp'
+import Givesendgoimg from '../../public/givesendgo.png'
+import ROY from '../../public/ROY.webp'
 import { Progress } from "@/components/ui/progress"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { FaHeart } from "react-icons/fa6";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
-import Beadifferent from '../../../public/bedifferencemaker.png'
+import Beadifferent from '../../public/bedifferencemaker.png'
 import { Textarea } from "@/components/ui/textarea"
 import { useRouter } from "next/navigation";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -115,7 +115,38 @@ export default function Givesendgo(){
                 <div className="bg-gray-100 mb-4 rounded-lg w-full  h-fit p-16 shadow-md">
                     <h2 className="text-2xl md:text-3xl mb-2">Prayer Requests</h2>
                     <p className="mb-2">Click the Pray button to let the campaign owner know you are praying for them.</p>
-                    <Button className="px-10 text-white bg-teal-600 p-6 mt-3">Pray</Button>
+                    <AlertDialog>
+            <AlertDialogTrigger className="bg-teal-600 text-white px-7 rounded-md py-4"> 
+                <p>Pray</p>
+                </AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle className="md:text-2xl text-center">Pray</AlertDialogTitle>
+      <AlertDialogDescription>
+        <p className="text-center">Send an encouraging message or prayer to the campaign owner.</p>
+       <p className="text-center mt-2">Let them know you are praying for them.</p>
+
+       <p className="mt-4">The prayer of a righteous person is powerful and effective. James 5:16</p>
+
+       <Textarea value={prayer} onChange={(e)=>setPrayer(e.target.value)} className="mt-8" placeholder="Type your message here." />
+
+       <div className="flex mt-4 gap-x-4">
+
+
+       <Input onChange={(e)=>setName(e.target.value)} value={name} className="" placeholder="Name"/>
+       
+       <Input type="email" className="" 
+       onChange={(e)=>setEmail(e.target.value)} value={email}placeholder="email"/>
+       </div>
+
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction>Submit</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
                    
                 </div>
             </div>
@@ -139,7 +170,7 @@ export default function Givesendgo(){
 
             <p className="mt-3">Campaign created by <span className="font-medium">Roy Dinges</span></p>
             <p className="mt-3">Campaign funds will be recieved by <span className="font-medium">Roy Dinges</span></p>
-            <div onClick={()=>router.push('/dashboard/givesendgo/donate')} className="bg-red-500 text-white text-xl flex justify-between p-4 rounded-lg font-semibold mt-4">
+            <div onClick={()=>router.push('/givesendgo/donate')} className="bg-red-500 text-white text-xl flex justify-between p-4 rounded-lg font-semibold mt-4">
                 <p>Give</p>
                 <span>
                     110

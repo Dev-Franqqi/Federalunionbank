@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { IoIosArrowForward } from "react-icons/io";
 import { CiCreditCard1 } from "react-icons/ci";
 import { FaSackDollar } from "react-icons/fa6";
+import Givesendgo from '../public/givesendgo.png'
 import { PiPiggyBank } from "react-icons/pi";
 import { MdOutlineHome } from "react-icons/md";
 import { BsCashStack } from "react-icons/bs";
@@ -75,6 +76,10 @@ export default function Home() {
             </p>
           </section>
         </section>
+        <div className="p-8">
+      <Link href='/givesendgo' className="text-blue-600">Click here to view available Donations <IoIosArrowForward className="inline font-semibold" /></Link>
+      <Image src={Givesendgo} alt="" />
+      </div>
         <section className="card bg-white px-3 py-5 mx-auto mb-6 md:hidden">
           <Image src={secondimage} className="mx-auto h-56 w-full" alt="" />
           <h2 className="font-semibold text-neutral-700 mt-4 ">
@@ -198,7 +203,7 @@ export default function Home() {
               <GoDeviceDesktop className="text-3xl" />
               24-hour Banking
             </span>
-            <div className="text-blue-500">Call +1 4895 5075 43</div>
+            <div className="text-blue-500">Call +1 719-629-0063</div>
           </li>
         </ul>
       </section>
@@ -224,6 +229,8 @@ export default function Home() {
           Learn more <IoIosArrowForward className="inline" />
         </Link>
       </section>
+      <hr className="mb-6" />
+      
 
       <div className="bg-white ">
         <h3 className="text-2xl p-6 text-blue-900 font-bold mb-3 md:text-4xl">
