@@ -3,9 +3,9 @@ import {motion} from 'framer-motion'
 import Image from 'next/image'
 import { Button } from "@/components/ui/button";
 import ROY from '../../../public/ROY.webp'
-import Beadifferent from '../../../../public/bedifferencemaker.png'
+import Beadifferent from '../../../public/bedifferencemaker.png'
 
-import Givesendgoimg from '../../../../public/givesendgo.png'
+import Givesendgoimg from '../../../public/givesendgo.png'
 import { IoIosSearch } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useState } from 'react';
