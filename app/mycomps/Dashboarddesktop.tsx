@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { PiReceiptFill } from "react-icons/pi";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
+import { FaHandHoldingHeart } from "react-icons/fa";
 import Cookies from "js-cookie";
 export default function Dashboarddesktop(){
     const router = useRouter()
@@ -44,6 +45,10 @@ export default function Dashboarddesktop(){
           <li className="cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-medium" onClick={()=>router.push('/dashboard/settings')}>
             <FaGear className="text-2xl" />
             Profile Settings
+          </li>
+          <li className="cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-medium" onClick={()=>router.push('/dashboard/givesendgo')}>
+            <FaHandHoldingHeart className="text-2xl" />
+            Donate
           </li>
           <li onClick={logout} className="cursor-pointer flex items-center text-xs gap-x-1 pl-5  font-medium">
             <IoLogOutSharp className="text-3xl" />
