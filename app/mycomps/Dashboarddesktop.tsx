@@ -25,7 +25,7 @@ export default function Dashboarddesktop(){
      }
     return(<>
     <aside
-        className="w-1/5 bg-gray-200 h-screen  flex flex-col justify-between"      >
+        className="hidden w-1/5 bg-gray-200 h-screen  md:flex flex-col justify-between"      >
         {/* Your aside content */}
         <Image src={Logo} width={100} className="ml-4 mt-4" alt="AFCU" />
         <ul className="h-2/5 flex flex-col justify-between">
