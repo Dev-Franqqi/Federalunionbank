@@ -6,6 +6,26 @@ import { useEffect,useState } from "react";
 import Cookies from "js-cookie";
 import { InfoIcon } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Label } from "@radix-ui/react-dropdown-menu";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp"
+ 
 import {
     Select,
     SelectContent,
@@ -13,6 +33,15 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
+  import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+    DialogFooter
+  } from "@/components/ui/dialog"
   
 import EmptyBeneficiary from '../../../public/EmptyBeneficiary.png'
 import Image from "next/image";
@@ -84,17 +113,72 @@ export default function Transfers(){
     <SelectValue placeholder="Select Bank" />
   </SelectTrigger>
   <SelectContent>
-    <SelectItem value="none">No Options Available Now</SelectItem>
+    <SelectItem value="FCbank">First Community Bank</SelectItem>
     
   </SelectContent>
 </Select>
 
+
+
             </div>
-         </main>
+            <div className="bg-white h-56 mt-8 p-4">
+              <form className="mt-6">
+             <div className="mb-4">
+             <label className="text-xs" htmlFor="account">Account Number:</label>
+             <Input className="" />
+             </div>
+             <div className="mb-4">
+              <label className="text-xs" htmlFor="amount">Amount:</label>
+                <Input className="" />
+             </div>
+             <Dialog>
+      <DialogTrigger asChild>
+             <Button className="font-semibold text-sm w-full bg-orange-600 text-white">Send</Button>
+
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Transfers</DialogTitle>
+          <DialogDescription>
+            Input passkey to confirm transaction
+          </DialogDescription>
+        </DialogHeader>
+        <div className="w-fit mx-auto">
+
+        <InputOTP className="" maxLength={4}>
+      <InputOTPGroup>
+        <InputOTPSlot index={0} />
+        <InputOTPSlot index={1} />
+        <InputOTPSlot index={2} />
+        <InputOTPSlot index={3} />
+      </InputOTPGroup>
       
+    </InputOTP>
+        </div>
+        <DialogFooter>
+        <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button className="bg-orange-600 w-full text-white font-semibold" variant="outline">Submit</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle className="text-red-600">Checking amount missing</AlertDialogTitle>
+          <AlertDialogDescription>
+          To proceed, you will need to have a checking account, as it is required for transactions and account management. The total cost for this will be $500, which covers all necessary setup and processing. This ensures smooth and secure financial operations for your account.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel className="bg-black text-white font-semibold">Close</AlertDialogCancel>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+              </form>
+
+</div>
 
 
-  
-  
-  </>
+         </main>  </>
 }
