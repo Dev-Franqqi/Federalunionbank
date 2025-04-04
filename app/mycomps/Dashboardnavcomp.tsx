@@ -22,7 +22,7 @@ import { signOut } from "firebase/auth";
 import useUser from "./hooks/useUser";
 import useOpen from './hooks/useOpen'
 import Cookies from "js-cookie";
-export default function Dashboardnavcomp({mP}:{mP:boolean}){
+export default function Dashboardnavcomp({mP}:{mP?:boolean}){
      const router = useRouter()
      const pathname = usePathname()
      const {user,setUser} = useUser()

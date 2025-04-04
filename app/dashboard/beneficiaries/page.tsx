@@ -21,7 +21,7 @@ export default function Beneficiaries(){
 
         <div className="md:w-3/5 ">
         <div>
-        <Dashboardnavcomp />
+        <Dashboardnavcomp  />
 
         </div>
 
