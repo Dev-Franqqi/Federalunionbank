@@ -43,11 +43,12 @@ export default function Dashboard(){
   const {user,setUser} = useUser()
   const {isOpen,setIsOpen} =useOpen()
   const pathname = usePathname()
+  const [mP,setMP] = useState(false)
   const router = useRouter() 
   const buttonRef = useRef<HTMLButtonElement>(null)
  //programmatically click 
  const clickref = () =>{
- 
+    setMP(true)
 
     if(buttonRef.current){
       buttonRef.current.click()
@@ -112,7 +113,7 @@ AFCU Team
   <div className="block md:flex md:justify-between md:items-center">
 
   <h1 className="font-semibold">Hello {user.firstname}</h1>
-<Dashboardnavcomp />
+<Dashboardnavcomp mP={mP} />
   </div>
 
 

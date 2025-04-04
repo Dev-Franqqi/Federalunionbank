@@ -22,13 +22,19 @@ import { signOut } from "firebase/auth";
 import useUser from "./hooks/useUser";
 import useOpen from './hooks/useOpen'
 import Cookies from "js-cookie";
-export default function Dashboardnavcomp(){
+export default function Dashboardnavcomp({mP}:{mP:boolean}){
      const router = useRouter()
      const pathname = usePathname()
      const {user,setUser} = useUser()
      const {isOpen,setIsOpen} = useOpen()
-     
+     const [hasUnread, setHasUnread] = useState(false)
+     const handleNotification = ()=>{
 
+      setHasUnread(false)
+      Cookies.set('notification', 'read') // Set a cookie to mark notifications as read
+      router.push('/dashboard/notification')
+
+     }
      const logout =async()=>{
         signOut(auth).then(() => {
             // Sign-out successful.
@@ -38,6 +44,15 @@ export default function Dashboardnavcomp(){
           })
      }
      useEffect(()=>{
+        const notificationCookie = Cookies.get('notification')
+        if(!notificationCookie){
+
+          setHasUnread(true)
+        }
+        if(notificationCookie === 'read'){
+          setHasUnread(false)
+        }
+
         setIsOpen(false)
         const Usercookie = Cookies.get('User')
         if(Usercookie){
@@ -49,7 +64,18 @@ export default function Dashboardnavcomp(){
     return(<div className=''>
     <nav className="flex justify-between items-center p-6">
     <div className="flex gap-x-6 items-center">
+      {mP?  <div onClick={handleNotification} className="relative w-fit">
       <FaBell className="text-2xl" />
+      {hasUnread && (
+        <span className="absolute top-0 right-0 flex items-center justify-center w-4 h-4 text-xs text-white bg-red-600 rounded-full">
+          1
+        </span>
+      )}
+    </div>:
+      <FaBell className="text-2xl" />
+    
+    }
+  
       <Avatar className="bg-black">
       <AvatarFallback className="font-medium tracking-wider">
   {user 
