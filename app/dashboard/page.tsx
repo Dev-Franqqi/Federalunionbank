@@ -200,7 +200,7 @@ AFCU Team
         <tr className="border-t">
           <td className="px-4 py-2 text-gray-700">{1}</td> {/* Serialization */}
           <td className="px-4 py-2 text-gray-800">{transfer.name}</td>
-          <td className="px-4 py-2 text-green-600 font-semibold">₦{transfer.amount}</td>
+          <td className="px-4 py-2 text-green-600 font-semibold">${transfer.amount}</td>
           <td className={`px-4 py-2 font-semibold ${
             transfer.status === 'success'
               ? 'text-green-600'
