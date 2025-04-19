@@ -68,7 +68,7 @@ export default function Profile(){
                                 <p className="text-sm text-gray-400 text-medium">Phone number</p>
                                 <p className="text-lg font-bold text-gray-800">+{user.phoneNumber}</p>
                             </div>
-
+          
                             <div>
                                 <p className="text-sm text-gray-400 text-medium">Account Number</p>
                                 <p className="text-lg font-bold text-gray-800">{user.accountNumber}</p>

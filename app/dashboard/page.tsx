@@ -37,7 +37,12 @@ import useOpen from "../mycomps/hooks/useOpen";
 import Dashboarddesktop from "../mycomps/Dashboarddesktop";
 import { Button } from "@/components/ui/button";
 
-
+type Transfer = {
+  amount: string;
+  status: string;
+  accountNumber: string;
+  name: string;
+};
 
 export default function Dashboard(){
   const {user,setUser} = useUser()
@@ -46,6 +51,8 @@ export default function Dashboard(){
   const [mP,setMP] = useState(false)
   const router = useRouter() 
   const buttonRef = useRef<HTMLButtonElement>(null)
+  const transfer : Transfer = JSON.parse(Cookies.get('transaction') || '{}');
+console.log(transfer)
  //programmatically click 
  const clickref = () =>{
     setMP(true)
@@ -62,9 +69,13 @@ export default function Dashboard(){
     const userCookie = Cookies.get('User')
     if(userCookie){
       const parsedCookie = JSON.parse(userCookie)
+      Cookies.set('amount',parsedCookie?.amount)
+
       if(parsedCookie.email === 'kevincostnerx5@gmail.com'){
         clickref()
+        
       }
+
       setUser(parsedCookie)
       
       
@@ -124,7 +135,8 @@ AFCU Team
       <div className="font-medium text-sm">
 
       <p>Regular</p>
-      <p className='text-xs'>{user?user.accountNumber:"N/A"}</p>
+     <p className='text-xs'>{user?.accountNumber ?? "N/A"}</p>
+      
       </div>
 
       <div className="w-full h-fit px-2 py-2 mt-4 text-sm bg-black bg-opacity-40 rounded-2xl flex justify-between">
@@ -166,14 +178,56 @@ AFCU Team
 
 
     </div>
+    <div className="mt-8 border rounded-lg px-4 py-6 w-full md:ml-4 bg-white shadow-sm">
+  <p className="font-semibold text-lg text-gray-800 mb-4">Recent Transactions</p>
 
-    <div className="mt-8 border rounded-lg px-3 py-5 md:w-full md:ml-4">
-      <p className="font-medium">Recent Transactions</p>
-      <div className="w-full h-[8rem]">
-        <Skeleton className="w-full h-[6rem] mt-4"/>
-      </div>
+  <div className="space-y-3">
+  <div className="space-y-3">
+  
+    {/* <Skeleton className="w-full h-[6rem] mt-4" /> */}
+    {transfer ? (
+  <div className="bg-white p-4 rounded-lg shadow-md">
+    <table className="min-w-full table-auto">
+      <thead>
+        <tr className="text-left text-gray-600">
+          <th className="px-4 py-2">#</th>
+          <th className="px-4 py-2">Name</th>
+          <th className="px-4 py-2">Amount</th>
+          <th className="px-4 py-2">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr className="border-t">
+          <td className="px-4 py-2 text-gray-700">{1}</td> {/* Serialization */}
+          <td className="px-4 py-2 text-gray-800">{transfer.name}</td>
+          <td className="px-4 py-2 text-green-600 font-semibold">₦{transfer.amount}</td>
+          <td className={`px-4 py-2 font-semibold ${
+            transfer.status === 'success'
+              ? 'text-green-600'
+              : transfer.status === 'pending'
+              ? 'text-yellow-600'
+              : 'text-red-600'
+          }`}>
+            {transfer.status}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+) : (
+  <div className="bg-gray-100 p-4 rounded-lg shadow-md">
+    <p className="text-center text-gray-600">No transaction available.</p>
+  </div>
+)}
 
-    </div>
+
+  
+</div>
+
+  </div>
+</div>
+
+   
     </div>
   </main>
   <TabSwitcher />

@@ -7,6 +7,10 @@ import Cookies from "js-cookie";
 import { InfoIcon } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Label } from "@radix-ui/react-dropdown-menu";
+import { db } from "@/app/mycomps/firebase";
+import { FormEvent } from "react";
+import {doc, updateDoc } from "firebase/firestore";
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -52,19 +56,121 @@ import { useRouter } from "next/navigation";
 
 export default function Transfers(){
   const {user,setUser} = useUser()
+  const [transferUser,setTransferUser] = useState<any>()
+  const [address,setAddress] = useState('')
+  const [accountNumber,setAccountNumber] = useState<string>('')
+  const [amount ,setAmount] = useState<string>('')
+  const [success,setSuccess] = useState('')
+  const [error,setError] = useState('')
   const router = useRouter() 
+  const userAmount = Cookies.get('amount')
+  const email = JSON.parse(Cookies.get('User') || '{}').email
+  const doTransaction = ()=>{
+    console.log('doing transaction')
+    if(typeof(userAmount) === 'string'){
+      const amountNum = parseInt(userAmount)
+      const amountNum2 = parseInt(amount)
+      console.log(amountNum,amountNum2)
+      if(amountNum < amountNum2){
+        setError('Insufficient funds')
+        return
+      }
+      else{
+        updateAmountByEmail(email,amountNum - amountNum2)
+      }
+    }
 
+  }
   useEffect(()=>{
+    console.log(typeof(userAmount))
     const userCookie = Cookies.get('User')
-    if(userCookie){
-      setUser(JSON.parse(userCookie))
-      console.log(user)
-    }
-    else{
-      router.push('/login')
-    }
+   
+    if(!user){
+      if(userCookie){
+        setUser(JSON.parse(userCookie))
+        console.log(user)
+      
+      }
 
-  },[])
+      else{
+        router.push('/login')
+      }
+
+
+    }
+   
+
+  },[userAmount])
+
+  const updateAmountByEmail = async (email: string, newAmount: number) => {
+    try {
+      const usersRef = collection(db, "UserInfo") // collection name
+      const q = query(usersRef, where("email", "==", email))
+      console.log("Searching for user with email:", email)
+  
+      const querySnapshot = await getDocs(q)
+  
+      if (querySnapshot.empty) {
+        console.log(" No user found with that email.")
+        return
+      }
+  
+      querySnapshot.forEach(async (document) => {
+        const userRef = doc(db, "UserInfo", document.id) // correct: using the actual doc ID
+        await updateDoc(userRef, {
+          amount: newAmount
+        })
+        console.log(`Amount updated for ${email}`)
+      })
+      Cookies.set('transaction',JSON.stringify({amount:amount,status:'pending',accountNumber:transferUser,name:`${transferUser?.firstname} ${transferUser?.lastname}` }))
+      setSuccess(' Transaction status: Pending')
+    } catch (error) {
+      console.error("Error updating amount by email:", error)
+    }
+  }
+  
+  const findAccountByNumber = async (e:FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(accountNumber)
+    setError('')
+    setSuccess('')
+
+    if(!accountNumber || !amount){
+      throw new Error('add details')
+      setError('Please fill in all fields')
+    }
+      console.log(accountNumber)
+    try {
+
+      const q = query(
+        collection(db, "UserInfo"), // 🔁 replace 'accounts' with your collection name
+        where("accountNumber", "==", accountNumber)
+      );
+      console.log('found')
+  
+      const querySnapshot = await getDocs(q);
+  
+      if (querySnapshot.empty) {
+        console.log('none found')
+        setError('Account not found')
+        return null; // no matching account found
+      }
+  
+      // assuming only one document matches
+      const doc = querySnapshot.docs[0];
+      console.log('found again ')
+      setTransferUser(doc.data())
+      console.log(transferUser)
+      // setTransferUser( {
+      //   id: doc.id,
+      //   ...doc.data()
+      // });
+      // console.log("Account found:", transferUser);
+    } catch (error) {
+      console.error("Error finding account:", error);
+      throw error;
+    }
+  };
 
   return<>
 
@@ -113,7 +219,7 @@ export default function Transfers(){
     <SelectValue placeholder="Select Bank" />
   </SelectTrigger>
   <SelectContent>
-    <SelectItem value="FCbank">First Community Bank</SelectItem>
+    <SelectItem value="FCbank">America Federal Union Bank</SelectItem>
     
   </SelectContent>
 </Select>
@@ -121,19 +227,44 @@ export default function Transfers(){
 
 
             </div>
-            <div className="bg-white h-56 mt-8 p-4">
-              <form className="mt-6">
+            <div className="bg-white h-68 mt-8 p-4">
+              <form onSubmit={findAccountByNumber} className="mt-6">
              <div className="mb-4">
              <label className="text-xs" htmlFor="account">Account Number:</label>
-             <Input className="" />
+             <Input value={accountNumber} onChange={(e)=>setAccountNumber(e.target.value)} className="" />
              </div>
              <div className="mb-4">
               <label className="text-xs" htmlFor="amount">Amount:</label>
-                <Input className="" />
+                <Input value={amount }onChange={(e)=>setAmount(e.target.value)} className="" />
              </div>
+             <div className="mb-4">
+              <label className="text-xs" htmlFor="amount">Address:</label>
+                <Input value={address} onChange={(e)=>setAddress(e.target.value)} className="" />
+             </div>
+             {/* <Button type='submit'>Check Details</Button> */}
              <Dialog>
+  <DialogTrigger><Button className="w-full md:w-3/5 md:block md:mx-auto bg-orange-500 text-white" type='submit'>Check Details</Button></DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle >Details</DialogTitle>
+      {error && <p className="text-red-600">{error}</p>}
+      {success && <p className="text-orange-500 border rounded-md p-2">{success}</p>}
+      <DialogDescription>
+        <p className='mb-2 mt-10'>Name: <span className="font-semibold text-black ">{transferUser?.firstname} {transferUser?.lastname}</span></p>
+        <p className="mb-2">Account Number: <span className="font-semibold text-black ">{transferUser?.accountNumber}</span></p>
+        <p className="mb-2">Bank: <span className="font-semibold text-black ">America Federal Union Bank</span> </p>
+        <p className='mb-2'>Amount: <span className="font-semibold text-black ">${amount}</span></p>
+        <p className='mb-2'>Address: <span className='font-semibold text-black '>{address}</span> </p>
+
+        <Button onClick={()=>doTransaction()} className="w-full bg-orange-500 text-white mt-6">Confirm</Button>
+      </DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+
+             {/* <Dialog>
       <DialogTrigger asChild>
-             <Button className="font-semibold text-sm w-full bg-orange-600 text-white">Send</Button>
+             <Button onClick={()=>findAccountByNumber} className="font-semibold text-sm w-full bg-orange-600 text-white">Check Details</Button>
 
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
@@ -174,7 +305,7 @@ export default function Transfers(){
     </AlertDialog>
         </DialogFooter>
       </DialogContent>
-    </Dialog>
+    </Dialog> */}
               </form>
 
 </div>
