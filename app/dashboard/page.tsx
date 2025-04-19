@@ -166,7 +166,7 @@ AFCU Team
         </div>
 
 
-      <div onClick={()=>router.push('dashboard/transfers')}>
+      <div className="cursor-pointer" onClick={()=>router.push('dashboard/transfers')}>
 
         <div className="w-[3rem] h-[3rem] bg-white rounded-2xl flex flex-col justify-center">
         <FaRegArrowAltCircleUp className="text-black text-center text-2xl mx-auto" />

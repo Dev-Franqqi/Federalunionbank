@@ -64,6 +64,11 @@ export default function Transfers(){
   const [error,setError] = useState('')
   const router = useRouter() 
   const userAmount = Cookies.get('amount')
+  const userCookie = Cookies.get('user')
+  let parsedUser:any;
+  if(userCookie){
+  parsedUser = JSON.parse(userCookie)
+  }
   const email = JSON.parse(Cookies.get('User') || '{}').email
   const doTransaction = ()=>{
     console.log('doing transaction')
@@ -101,7 +106,11 @@ export default function Transfers(){
    
 
   },[userAmount])
-
+  function formatWithCommas(value: string) {
+    if (!value) return '';
+    return parseInt(value).toLocaleString();
+  }
+  
   const updateAmountByEmail = async (email: string, newAmount: number) => {
     try {
       const usersRef = collection(db, "UserInfo") // collection name
@@ -122,8 +131,16 @@ export default function Transfers(){
         })
         console.log(`Amount updated for ${email}`)
       })
+      if(parsedUser){
+        parsedUser.amount = newAmount.toString()
+        console.log(parsedUser)
+        Cookies.set('amount',`${newAmount}`)
+        Cookies.set('User',JSON.stringify(parsedUser))
+       
+      }
       Cookies.set('transaction',JSON.stringify({amount:amount,status:'pending',accountNumber:transferUser,name:`${transferUser?.firstname} ${transferUser?.lastname}` }))
       setSuccess(' Transaction status: Pending')
+      setTimeout(()=>router.push('/dashboard'),2000)
     } catch (error) {
       console.error("Error updating amount by email:", error)
     }
@@ -235,15 +252,25 @@ export default function Transfers(){
              </div>
              <div className="mb-4">
               <label className="text-xs" htmlFor="amount">Amount:</label>
-                <Input value={amount }onChange={(e)=>setAmount(e.target.value)} className="" />
+              <Input
+  value={formatWithCommas(amount)}
+  onChange={(e) => {
+    const rawValue = e.target.value.replace(/,/g, '');
+    if (!isNaN(Number(rawValue))) {
+      setAmount(rawValue);
+    }
+  }}
+  className=""
+/>
+
              </div>
              <div className="mb-4">
-              <label className="text-xs" htmlFor="amount">Address:</label>
+              <label className="text-xs" htmlFor="address">Address:</label>
                 <Input value={address} onChange={(e)=>setAddress(e.target.value)} className="" />
              </div>
              {/* <Button type='submit'>Check Details</Button> */}
              <Dialog>
-  <DialogTrigger><Button className="w-full md:w-3/5 md:block md:mx-auto bg-orange-500 text-white" type='submit'>Check Details</Button></DialogTrigger>
+  <DialogTrigger><Button className="w-full md:block md:mx-auto bg-orange-500 text-white" type='submit'>Check Details</Button></DialogTrigger>
   <DialogContent>
     <DialogHeader>
       <DialogTitle >Details</DialogTitle>
@@ -253,7 +280,12 @@ export default function Transfers(){
         <p className='mb-2 mt-10'>Name: <span className="font-semibold text-black ">{transferUser?.firstname} {transferUser?.lastname}</span></p>
         <p className="mb-2">Account Number: <span className="font-semibold text-black ">{transferUser?.accountNumber}</span></p>
         <p className="mb-2">Bank: <span className="font-semibold text-black ">America Federal Union Bank</span> </p>
-        <p className='mb-2'>Amount: <span className="font-semibold text-black ">${amount}</span></p>
+        <p className='mb-2'>
+  Amount: <span className="font-semibold text-black ">
+    ${Number(amount).toLocaleString()}
+  </span>
+</p>
+
         <p className='mb-2'>Address: <span className='font-semibold text-black '>{address}</span> </p>
 
         <Button onClick={()=>doTransaction()} className="w-full bg-orange-500 text-white mt-6">Confirm</Button>
