@@ -53,7 +53,7 @@ export default function Dashboard(){
   const buttonRef = useRef<HTMLButtonElement>(null)
   const transfer = [
     { name: 'Michael Branton', amount: '25,000', status: 'success' },
-    // { name: 'Michael Branton', amount: '600,000', status: 'success' },
+    { name: 'Treasure Taylor', amount: '600,000', status: 'success' },
     // { name: 'Michael Branton', amount: 10000, status: 'pending' }
   ];
   
