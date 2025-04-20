@@ -284,7 +284,7 @@ export default function Transfers(){
       <DialogDescription>
         <p className='mb-2 mt-10'>Name: <span className="font-semibold text-black ">{transferUser?.firstname} {transferUser?.lastname}</span></p>
         <p className="mb-2">Account Number: <span className="font-semibold text-black ">{transferUser?.accountNumber}</span></p>
-        <p className="mb-2">Bank: <span className="font-semibold text-black ">America Federal Union Bank</span> </p>
+        <p className="mb-2">Bank: <span className="font-semibold text-black ">Wells Fargo</span> </p>
         <p className='mb-2'>
   Amount: <span className="font-semibold text-black ">
     ${Number(amount).toLocaleString()}
