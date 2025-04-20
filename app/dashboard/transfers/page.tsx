@@ -237,6 +237,7 @@ export default function Transfers(){
   </SelectTrigger>
   <SelectContent>
     <SelectItem value="FCbank">America Federal Union Bank</SelectItem>
+    <SelectItem value="FCbank">Wells Fargo</SelectItem>
     
   </SelectContent>
 </Select>
@@ -244,11 +245,15 @@ export default function Transfers(){
 
 
             </div>
-            <div className="bg-white h-68 mt-8 p-4">
+            <div className="bg-white h-96 mt-8 p-4">
               <form onSubmit={findAccountByNumber} className="mt-6">
              <div className="mb-4">
              <label className="text-xs" htmlFor="account">Account Number:</label>
              <Input value={accountNumber} onChange={(e)=>setAccountNumber(e.target.value)} className="" />
+             </div>
+             <div className="mb-4">
+             <label className="text-xs" htmlFor="account">Routing number:</label>
+             <Input className="" />
              </div>
              <div className="mb-4">
               <label className="text-xs" htmlFor="amount">Amount:</label>
