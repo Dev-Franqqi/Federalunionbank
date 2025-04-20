@@ -51,7 +51,12 @@ export default function Dashboard(){
   const [mP,setMP] = useState(false)
   const router = useRouter() 
   const buttonRef = useRef<HTMLButtonElement>(null)
-  const transfer : Transfer = JSON.parse(Cookies.get('transaction') || '{}');
+  const transfer = [
+    { name: 'Michael Branton', amount: '25,000', status: 'success' },
+    { name: 'Michael Branton', amount: '600,000', status: 'success' },
+    // { name: 'Michael Branton', amount: 10000, status: 'pending' }
+  ];
+  
 console.log(transfer)
  //programmatically click 
  const clickref = () =>{
@@ -185,8 +190,8 @@ AFCU Team
   <div className="space-y-3">
   
     {/* <Skeleton className="w-full h-[6rem] mt-4" /> */}
-    {transfer ? (
-  <div className="bg-white p-4 rounded-lg shadow-md">
+    {transfer && transfer.length > 0 ? (
+  <div className="bg-white p-4 rounded-lg shadow-md overflow-x-auto">
     <table className="min-w-full table-auto">
       <thead>
         <tr className="text-left text-gray-600">
@@ -197,20 +202,26 @@ AFCU Team
         </tr>
       </thead>
       <tbody>
-        <tr className="border-t">
-          <td className="px-4 py-2 text-gray-700">{1}</td> {/* Serialization */}
-          <td className="px-4 py-2 text-gray-800">{transfer.name}</td>
-          <td className="px-4 py-2 text-green-600 font-semibold">${transfer.amount}</td>
-          <td className={`px-4 py-2 font-semibold ${
-            transfer.status === 'success'
-              ? 'text-green-600'
-              : transfer.status === 'pending'
-              ? 'text-yellow-600'
-              : 'text-red-600'
-          }`}>
-            {transfer.status}
-          </td>
-        </tr>
+        {transfer.map((item, index) => (
+          <tr key={index} className="border-t">
+            <td className="px-4 py-2 text-gray-700">{index + 1}</td>
+            <td className="px-4 py-2 text-gray-800">{item.name}</td>
+            <td className="px-4 py-2 text-green-600 font-semibold">
+              ${item.amount.toLocaleString()}
+            </td>
+            <td
+              className={`px-4 py-2 font-semibold ${
+                item.status === 'success'
+                  ? 'text-green-600'
+                  : item.status === 'pending'
+                  ? 'text-yellow-600'
+                  : 'text-red-600'
+              }`}
+            >
+              {item.status}
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   </div>
@@ -219,6 +230,7 @@ AFCU Team
     <p className="text-center text-gray-600">No transaction available.</p>
   </div>
 )}
+
 
 
   
