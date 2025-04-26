@@ -54,6 +54,7 @@ export default function Dashboard(){
   const transfer = [
     { name: 'Michael Branton', amount: '25,000', status: 'success' },
     { name: 'Treasure Taylor', amount: '600,000', status: 'success' },
+    { name: 'Treasure Taylor', amount: '600,000', status: 'pending' },
     // { name: 'Michael Branton', amount: 10000, status: 'pending' }
   ];
   
