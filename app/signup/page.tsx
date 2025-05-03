@@ -34,12 +34,16 @@ export default function Signup() {
   const router = useRouter()
   const {register,handleSubmit,setError,formState:{errors,isSubmitting}} = useForm<ISignupinput>()
   
-  const comparePassword = (a:string, b:string) => {
-    if (!(a === b)) {
-      setError("root",{type:"custom",message:"Passwords do not match"});
-   throw new Error("passwords do not match")
-  }
-};
+  const comparePassword = (password: string, confirmPassword: string) => {
+    if (password !== confirmPassword) {
+      setError("confirmPassword", {
+        type: "manual",
+        message: "Passwords do not match",
+      });
+      throw new Error("Passwords do not match");
+    }
+  };
+  
 function generateAccountNumber() {
   return Math.floor(1000000000 + Math.random() * 9000000000).toString();
 }
