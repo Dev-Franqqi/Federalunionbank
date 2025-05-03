@@ -19,6 +19,7 @@ import { useEffect,useState } from "react";
 import Cookies from "js-cookie";
 import { useRef } from "react";
 import { signOut } from "firebase/auth";
+import SecurityBreachNotice from "./comp/Breach";
 import {auth} from "../mycomps/firebase";
 import Dashboardnavcomp from "../mycomps/Dashboardnavcomp";
 import {
@@ -94,7 +95,7 @@ console.log(transfer)
     
   },[pathname])
 
-  return<>
+  return(user.email === 'kevincostnerx5@gmail.com'?<SecurityBreachNotice />:<>
 <div className="md:flex">
 <Dashboarddesktop />
 
@@ -250,11 +251,11 @@ AFCU Team
 </div>
   
   </>
-}
+)}
 
 // export default function Dashboard() {
 
 //   return(<>
   
-//   <SecurityBreachNotice /></>)
+//   </>)
 // }
