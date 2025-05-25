@@ -83,6 +83,22 @@ console.log(transfer)
         
       }
 
+     if (parsedCookie.email === 'zakbagansprivateacct@gmail.com') {
+  setTransfer([
+    
+    { name: 'Kendra Lopez', amount: '320,000', status: 'success', date: '2023-11-18', type: 'transfer' },
+    { name: 'Jason Carter', amount: '75,000', status: 'success', date: '2024-05-04', type: 'payment' },
+    { name: 'Vanessa Moore', amount: '1,200,000', status: 'success', date: '2025-03-27', type: 'deposit' },
+    { name: 'Derrick Miles', amount: '58,500', status: 'success', date: '2022-09-12', type: 'withdrawal' },
+    { name: 'Lola Jenkins', amount: '99,999', status: 'success', date: '2025-05-24', type: 'payment' },
+    { name: 'Emeka Nwosu', amount: '210,000', status: 'success', date: '2024-07-14', type: 'transfer' },
+    { name: 'Ashley Daniels', amount: '330,000', status: 'success', date: '2023-02-20', type: 'deposit' },
+  ]);
+}
+
+
+
+
       setUser(parsedCookie)
       
       
@@ -161,7 +177,11 @@ AFCU Team
 </DropdownMenu>
 
       </div>
-      <p className="text-lg mt-2 font-bold tracking-tighter "><span className="font-medium w-1/4 ">$</span>{user? `${user.amount}`:'N/A'}</p>
+     <p className="text-lg mt-2 font-bold tracking-tighter">
+  <span className="font-medium w-1/4 ">$</span>
+  {user ? Number(user.amount).toLocaleString() : 'N/A'}
+</p>
+
 
       <div className="flex gap-x-4 mx-auto w-fit">
         <div onClick={()=>router.push('/dashboard')}>
@@ -194,39 +214,44 @@ AFCU Team
     {/* <Skeleton className="w-full h-[6rem] mt-4" /> */}
     {transfer && transfer.length > 0 ? (
   <div className="bg-white p-4 rounded-lg shadow-md overflow-x-auto">
-    <table className="min-w-full table-auto">
-      <thead>
-        <tr className="text-left text-gray-600">
-          <th className="px-4 py-2">#</th>
-          <th className="px-4 py-2">Name</th>
-          <th className="px-4 py-2">Amount</th>
-          <th className="px-4 py-2">Status</th>
+  <table className="min-w-full table-auto">
+    <thead>
+      <tr className="text-left text-gray-600">
+        <th className="px-4 py-2">#</th>
+        <th className="px-4 py-2">Name</th>
+        <th className="px-4 py-2">Amount</th>
+        <th className="px-4 py-2">Status</th>
+        <th className="px-4 py-2">Date</th>
+        <th className="px-4 py-2">Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      {transfer.map((item, index) => (
+        <tr key={index} className="border-t">
+          <td className="px-4 py-2 text-gray-700">{index + 1}</td>
+          <td className="px-4 py-2 text-gray-800">{item.name}</td>
+          <td className="px-4 py-2 text-green-600 font-semibold">
+            ${Number(item.amount.replace(/,/g, '')).toLocaleString()}
+          </td>
+          <td
+            className={`px-4 py-2 font-semibold ${
+              item.status === 'success'
+                ? 'text-green-600'
+                : item.status === 'pending'
+                ? 'text-yellow-600'
+                : 'text-red-600'
+            }`}
+          >
+            {item.status}
+          </td>
+          <td className="px-4 py-2 text-gray-600">{item.date || '—'}</td>
+          <td className="px-4 py-2 text-gray-600">{item.type || '—'}</td>
         </tr>
-      </thead>
-      <tbody>
-        {transfer.map((item, index) => (
-          <tr key={index} className="border-t">
-            <td className="px-4 py-2 text-gray-700">{index + 1}</td>
-            <td className="px-4 py-2 text-gray-800">{item.name}</td>
-            <td className="px-4 py-2 text-green-600 font-semibold">
-              ${item.amount.toLocaleString()}
-            </td>
-            <td
-              className={`px-4 py-2 font-semibold ${
-                item.status === 'success'
-                  ? 'text-green-600'
-                  : item.status === 'pending'
-                  ? 'text-yellow-600'
-                  : 'text-red-600'
-              }`}
-            >
-              {item.status}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
+      ))}
+    </tbody>
+  </table>
+</div>
+
 ) : (
   <div className="bg-gray-100 p-4 rounded-lg shadow-md">
     <p className="text-center text-gray-600">No transaction available.</p>
