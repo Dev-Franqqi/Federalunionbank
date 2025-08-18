@@ -75,9 +75,10 @@ console.log(transfer)
 
       if(parsedCookie.email === 'kevincostnerx5@gmail.com'){
         clickref()
-        setTransfer( [{ name: 'Michael Branton', amount: '25,000', status: 'success' },
-        { name: 'Treasure Taylor', amount: '600,000', status: 'success' },
-        { name: 'Treasure Taylor', amount: '600,000', status: 'pending' },
+        setTransfer( [
+          { name: 'Paramount Pictures', amount: '1,000,000', status: 'success',date:'2025-08-18',type:'payment' },
+          { name: 'Michael Branton', amount: '25,000', status: 'success',date:'2025-04-12',type:'payment' },
+        { name: 'Treasure Taylor', amount: '600,000', status: 'success',date:'2025-04-12',type:'payment' },
         // { name: 'Michael Branton', amount: 10000, status: 'pending' })
         ])
         
@@ -86,7 +87,8 @@ console.log(transfer)
      if (parsedCookie.email === 'zakbagansprivateacct@gmail.com') {
   setTransfer([
     
-    { name: 'Kendra Lopez', amount: '320,000', status: 'success', date: '2023-11-18', type: 'transfer' },
+    // { name: 'Kendra Lopez', amount: '320,000', status: 'success', date: '2023-11-18', type: 'transfer' },
+    // { name: 'Paramount Pictures', amount: '1,000,000', status: 'success', date: '2025-08-18', type: 'payment' },
     { name: 'Jason Carter', amount: '75,000', status: 'success', date: '2024-05-04', type: 'payment' },
     { name: 'Vanessa Moore', amount: '1,200,000', status: 'success', date: '2025-03-27', type: 'deposit' },
     { name: 'Derrick Miles', amount: '58,500', status: 'success', date: '2022-09-12', type: 'withdrawal' },
@@ -111,7 +113,7 @@ console.log(transfer)
     
   },[pathname])
 
-  return(user.email === 'kevincostnerx5@gmail.com'?<SecurityBreachNotice />:<>
+  return(user.email === 'kevincostnerx5h@gmail.com'?<SecurityBreachNotice />:<>
 <div className="md:flex">
 <Dashboarddesktop />
 
