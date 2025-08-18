@@ -111,7 +111,7 @@ console.log(transfer)
     
   },[pathname])
 
-  return(user.email === 'kevincostnerxf5@gmail.com'?<SecurityBreachNotice />:<>
+  return(user.email === 'kevincostnerx5@gmail.com'?<SecurityBreachNotice />:<>
 <div className="md:flex">
 <Dashboarddesktop />
 
