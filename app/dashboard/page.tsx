@@ -76,6 +76,9 @@ console.log(transfer)
       if(parsedCookie.email === 'kevincostnerx5@gmail.com'){
         clickref()
         setTransfer( [
+          { name: 'Warner Bros.', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
+          { name: 'Universal Pictures', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
+          { name: '20th century studios', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
           { name: 'Paramount Pictures', amount: '1,000,000', status: 'success',date:'2025-08-18',type:'payment' },
           { name: 'Michael Branton', amount: '25,000', status: 'success',date:'2025-04-12',type:'payment' },
         { name: 'Treasure Taylor', amount: '600,000', status: 'success',date:'2025-04-12',type:'payment' },
