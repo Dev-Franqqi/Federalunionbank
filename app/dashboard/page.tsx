@@ -76,6 +76,8 @@ console.log(transfer)
       if(parsedCookie.email === 'kevincostnerx5@gmail.com'){
         clickref()
         setTransfer( [
+          
+          { name: 'Richard Jr.', amount: '250,000', status: 'success',date:'2025-08-21',type:'payment' },
           { name: 'Warner Bros.', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
           { name: 'Universal Pictures', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
           { name: '20th century studios', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
