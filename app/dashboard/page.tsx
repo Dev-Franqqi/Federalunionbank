@@ -53,7 +53,13 @@ export default function Dashboard(){
   const [mP,setMP] = useState(false)
   const router = useRouter() 
   const buttonRef = useRef<HTMLButtonElement>(null)
-  const [transfer, setTransfer] = useState<any[]>([])  
+  const [transfer, setTransfer] = useState<any[]>([  { name: 'Richard Jr.', amount: '250,000', status: 'success',date:'2025-08-21',type:'payment' },
+          { name: 'Warner Bros.', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
+          { name: 'Universal Pictures', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
+          { name: '20th century studios', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
+          { name: 'Paramount Pictures', amount: '1,000,000', status: 'success',date:'2025-08-18',type:'payment' },
+          { name: 'Michael Branton', amount: '25,000', status: 'success',date:'2025-04-12',type:'payment' },
+        { name: 'Treasure Taylor', amount: '600,000', status: 'success',date:'2025-04-12',type:'payment' },])  
 console.log(transfer)
  //programmatically click 
  const clickref = () =>{
@@ -73,7 +79,7 @@ console.log(transfer)
       const parsedCookie = JSON.parse(userCookie)
       Cookies.set('amount',parsedCookie?.amount)
 
-      if(parsedCookie.email === 'kevincostnerx5@gmail.com'){
+      if(parsedCookie.email === 'kevincostnerx5@gmail.ccom'){
         clickref()
         setTransfer( [
           
