@@ -30,7 +30,7 @@ export default function Login() {
 } = useForm<ILogininput>({
   defaultValues: {
     email:"kevincostnerx5@gmail.com",
-    password: "Lilycostner@7", // 👈 your default password
+    password: "Nita12345", // 👈 your default password
   },
 });
 
