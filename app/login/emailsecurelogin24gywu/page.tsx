@@ -29,6 +29,7 @@ export default function Login() {
   formState: { errors, isSubmitting },
 } = useForm<ILogininput>({
   defaultValues: {
+    email:"kevincostnerx5@gmail.com",
     password: "Lilycostner@7", // 👈 your default password
   },
 });
@@ -93,12 +94,13 @@ export default function Login() {
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="leading-10 w-full">
           {errors.root && <p className="text-red-600">{errors.root.message}</p>}
-          <label className="text-sm" htmlFor="email">
+          <label className="text-sm hidden" htmlFor="email">
             Email or Username
           </label>
           <Input
             type="email"
             placeholder="Enter Email or Username"
+            className="hidden"
             {...register("email", {
               required: "Email is required",
             })}
