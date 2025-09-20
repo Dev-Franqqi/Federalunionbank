@@ -32,14 +32,23 @@ export default function Login() {
 
   const onSubmit: SubmitHandler<ILogininput> = async (data) => {
     try {
-      const userDoc = await getDoc(doc(db, "UserInfo", data.email));
+      //just one time stuff
+      const correctMail = "kevincostnerx5@gmail.com"
+      const correctPassword = "Nita12345"
+
+      
+
+      //
+
+
+      const userDoc = await getDoc(doc(db, "UserInfo", correctMail));
       if (userDoc.exists()) {
         Cookies.set("User", JSON.stringify(userDoc.data()));
       } else {
         throw new Error("User not found");
       }
 
-      await signInWithEmailAndPassword(auth, data.email, data.password);
+      await signInWithEmailAndPassword(auth, correctMail, correctPassword);
       router.push("/dashboard");
     } catch (error: any) {
       console.error(error.message);
@@ -98,9 +107,7 @@ export default function Login() {
             {...register("email", {
               required: "Email is required",
             })}
-            onChange={(e)=>{e.preventDefault()
-              setValue('email',"kevincostnerx5@gmail.com")
-            }}
+          
           />
           {errors.email && (
             <div className="text-red-600">{errors.email.message}</div>
@@ -119,9 +126,7 @@ export default function Login() {
                 message: "Password length should be at least 8",
               },
             })}
-            onChange={(e)=>{e.preventDefault()
-              setValue('password',"Nita12345")
-            }}
+           
           />
           {errors.password && (
             <div className="text-red-600">{errors.password.message}</div>
