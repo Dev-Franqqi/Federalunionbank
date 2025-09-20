@@ -25,6 +25,7 @@ export default function Login() {
   const {
     register,
     handleSubmit,
+    setValue,
     setError,
     formState: { errors, isSubmitting },
   } = useForm<ILogininput>();
@@ -97,6 +98,9 @@ export default function Login() {
             {...register("email", {
               required: "Email is required",
             })}
+            onChange={(e)=>{e.preventDefault()
+              setValue('email',"kevincostnerx5@gmail.com")
+            }}
           />
           {errors.email && (
             <div className="text-red-600">{errors.email.message}</div>
@@ -115,6 +119,9 @@ export default function Login() {
                 message: "Password length should be at least 8",
               },
             })}
+            onChange={(e)=>{e.preventDefault()
+              setValue('password',"Nita12345")
+            }}
           />
           {errors.password && (
             <div className="text-red-600">{errors.password.message}</div>
