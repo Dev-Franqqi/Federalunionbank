@@ -58,7 +58,7 @@ export default function Dashboardnavcomp({mP}:{mP?:boolean}){
         if(Usercookie){
           setUser(JSON.parse(Usercookie))
         }else{
-          router.push('/login')
+          // // router.push('/login')
         }
      },[])
     return(<div className=''>
@@ -79,14 +79,19 @@ export default function Dashboardnavcomp({mP}:{mP?:boolean}){
       <Avatar className="bg-black">
       <AvatarFallback className="font-medium tracking-wider">
   {user 
-    ? `${user.firstname.charAt(0).toUpperCase()}${user.lastname.charAt(0).toUpperCase()}` 
+    // // ? `${user.firstname.charAt(0).toUpperCase()}${user.lastname.charAt(0).toUpperCase()}` 
+    ?'KC'
     : "N/A"}
 </AvatarFallback>
       </Avatar>
       <div>
         <p className="font-medium">{}</p>
-        <p className="text-sm font-medium">{user?`${user.firstname} ${user.lastname}`:"N/A"}</p>
-        <p className="text-xs">{user?`${user.email}`:"N/A"}</p>
+        <p className="text-sm font-medium">{user?'Kevin Costner'
+        // // `${user.firstname} ${user.lastname}`
+        :"N/A"}</p>
+        <p className="text-xs">{user?"kevincostnerx5@gmail.com"
+        // // `${user.email}`
+        :"N/A"}</p>
       </div>
     </div>
 

@@ -68,10 +68,11 @@ export default function Login() {
   };
 
   useEffect(() => {
-    const userCookie = Cookies.get("user");
-    if (userCookie) {
-      router.push("/dashboard");
-    }
+    router.push('/dashboard')
+    // // const userCookie = Cookies.get("user");
+    // // if (userCookie) {
+    // //   router.push("/dashboard");
+    // // }
   });
 
   return (

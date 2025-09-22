@@ -46,7 +46,7 @@ type Transfer = {
   name: string;
 };
 
-export default function Dashboard(){
+export default function Formerdashboard(){
   const {user,setUser} = useUser()
   const {isOpen,setIsOpen} =useOpen()
   const pathname = usePathname()
@@ -117,7 +117,7 @@ console.log(transfer)
       
     }
     else{
-      // router.push('/login')
+      router.push('/login')
     }
    
 
@@ -159,12 +159,7 @@ AFCU Team
 <div className="md:w-4/5 ">
   <div className="block md:flex md:justify-between md:items-center">
 
-  <h1 className="font-semibold">Hello Kevin 
-
-    {/* {user.firstname} */}
-
-
-  </h1>
+  <h1 className="font-semibold">Hello {user.firstname}</h1>
 <Dashboardnavcomp mP={mP} />
   </div>
 
@@ -197,10 +192,7 @@ AFCU Team
       </div>
      <p className="text-lg mt-2 font-bold tracking-tighter">
   <span className="font-medium w-1/4 ">$</span>
-  {user ? 
-  "10,000,000"
-  // // Number(user.amount).toLocaleString()
-   : 'N/A'}
+  {user ? Number(user.amount).toLocaleString() : 'N/A'}
 </p>
 
 

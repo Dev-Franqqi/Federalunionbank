@@ -23,10 +23,11 @@ export default function Profile(){
         if(!user){
             if(Usercookies){
                 setUser(JSON.parse(Usercookies))
-            }else{
-                router.push('/login')
-
             }
+            // else{
+            //     router.push('/login')
+
+            // }
         }
     },[])
 

@@ -23,9 +23,9 @@ export default function Dashboard(){
       setUser(JSON.parse(userCookie))
       console.log(user)
     }
-    else{
-      router.push('/login')
-    }
+    // else{
+    //   router.push('/login')
+    // }
 
   },[])
 
