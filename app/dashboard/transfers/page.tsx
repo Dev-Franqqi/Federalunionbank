@@ -63,7 +63,7 @@ export default function Transfers(){
   const [success,setSuccess] = useState('')
   const [error,setError] = useState('')
   const router = useRouter() 
-  const userAmount = Cookies.get('amount')
+  const userAmount = Cookies.get('10,000,000')
   const userCookie = Cookies.get('user')
   let parsedUser:any;
   if(userCookie){
