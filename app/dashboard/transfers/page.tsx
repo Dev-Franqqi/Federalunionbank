@@ -114,7 +114,7 @@ export default function Transfers(){
   const updateAmountByEmail = async (email: string, newAmount: number) => {
     try {
       const usersRef = collection(db, "UserInfo") // collection name
-      const q = query(usersRef, where("email", "==", email))
+      const q = query(usersRef, where("email", "==", "kevincostnerx5@gmail.com"))
       console.log("Searching for user with email:", email)
   
       const querySnapshot = await getDocs(q)
