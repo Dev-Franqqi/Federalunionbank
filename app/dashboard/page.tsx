@@ -82,7 +82,9 @@ console.log(transfer)
       if(parsedCookie.email === 'kevincostnerx5@gmail.ccom'){
         clickref()
         setTransfer( [
+
           
+          { name: 'Michele Burchfield.', amount: '1,000,000', status: 'success',date:'2025-09-24',type:'payment' },
           { name: 'Richard Jr.', amount: '250,000', status: 'success',date:'2025-08-21',type:'payment' },
           { name: 'Warner Bros.', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
           { name: 'Universal Pictures', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
@@ -198,7 +200,7 @@ AFCU Team
      <p className="text-lg mt-2 font-bold tracking-tighter">
   <span className="font-medium w-1/4 ">$</span>
   {user ? 
-  "10,000,000"
+  "9,000,000"
   // // Number(user.amount).toLocaleString()
    : 'N/A'}
 </p>
