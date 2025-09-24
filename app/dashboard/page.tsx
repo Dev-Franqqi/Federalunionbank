@@ -53,7 +53,10 @@ export default function Dashboard(){
   const [mP,setMP] = useState(false)
   const router = useRouter() 
   const buttonRef = useRef<HTMLButtonElement>(null)
-  const [transfer, setTransfer] = useState<any[]>([  { name: 'Richard Jr.', amount: '250,000', status: 'success',date:'2025-08-21',type:'payment' },
+  const [transfer, setTransfer] = useState<any[]>([ 
+          { name: 'Michele Burchfield.', amount: '1,000,000', status: 'success',date:'2025-09-24',type:'payment' },
+    
+    { name: 'Richard Jr.', amount: '250,000', status: 'success',date:'2025-08-21',type:'payment' },
           { name: 'Warner Bros.', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
           { name: 'Universal Pictures', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
           { name: '20th century studios', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
