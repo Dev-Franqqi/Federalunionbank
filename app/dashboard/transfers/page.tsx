@@ -199,13 +199,13 @@ export default function Transfers() {
                   {success && <p className="text-green-600 border rounded-md p-2">{success}</p>}
                   <DialogDescription>
                     <p className="mb-2 mt-10">
-                      Name: <span className="font-semibold text-black">David Skillestad </span>
+                      Name: <span className="font-semibold text-black">Michael Burchfield </span>
                     </p>
                     <p className="mb-2">
                       Account Number: <span className="font-semibold text-black">{transferUser?.accountNumber}</span>
                     </p>
                     <p className="mb-2">
-                      Bank: <span className="font-semibold text-black">Wells Fargo</span>
+                      Bank: <span className="font-semibold text-black">BOA</span>
                     </p>
                     <p className="mb-2">
                       Amount: <span className="font-semibold text-black">${Number(amount).toLocaleString()}</span>
