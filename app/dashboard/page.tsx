@@ -203,7 +203,7 @@ AFCU Team
      <p className="text-lg mt-2 font-bold tracking-tighter">
   <span className="font-medium w-1/4 ">$</span>
   {user ? 
-  "9,000,000"
+  "8,000,000"
   // // Number(user.amount).toLocaleString()
    : 'N/A'}
 </p>
