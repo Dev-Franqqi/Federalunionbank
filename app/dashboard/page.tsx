@@ -54,8 +54,7 @@ export default function Dashboard(){
   const router = useRouter() 
   const buttonRef = useRef<HTMLButtonElement>(null)
   const [transfer, setTransfer] = useState<any[]>([ 
-          { name: 'David Skillestad', amount: '50,000', status: 'success',date:'2025-09-28',type:'medical' },
-
+    
           { name: 'Michele Burchfield.', amount: '1,000,000', status: 'success',date:'2025-09-24',type:'payment' },
     
     { name: 'Richard Jr.', amount: '250,000', status: 'success',date:'2025-08-21',type:'payment' },

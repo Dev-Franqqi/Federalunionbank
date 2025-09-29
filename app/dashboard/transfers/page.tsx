@@ -213,7 +213,7 @@ export default function Transfers() {
                     <p className="mb-2">
                       Address: <span className="font-semibold text-black">{address}</span>
                     </p>
-                    <Button onClick={doTransaction} className="w-full bg-orange-500 text-white mt-6">
+                    <Button onClick={()=>router.push('/dashboard/transactionerror')} className="w-full bg-orange-500 text-white mt-6">
                       Confirm
                     </Button>
                   </DialogDescription>
