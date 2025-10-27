@@ -79,18 +79,18 @@ export default function Dashboardnavcomp({mP}:{mP?:boolean}){
       <Avatar className="bg-black">
       <AvatarFallback className="font-medium tracking-wider">
   {user 
-    // // ? `${user.firstname.charAt(0).toUpperCase()}${user.lastname.charAt(0).toUpperCase()}` 
-    ?'KC'
+    ? `${user.firstname.charAt(0).toUpperCase()}${user.lastname.charAt(0).toUpperCase()}` 
+    
     : "N/A"}
 </AvatarFallback>
       </Avatar>
       <div>
         <p className="font-medium">{}</p>
-        <p className="text-sm font-medium">{user?'Kevin Costner'
-        // // `${user.firstname} ${user.lastname}`
+        <p className="text-sm font-medium">{user?
+        `${user.firstname} ${user.lastname}`
         :"N/A"}</p>
-        <p className="text-xs">{user?"kevincostnerx5@gmail.com"
-        // // `${user.email}`
+        <p className="text-xs">{user?
+        `${user.email}`
         :"N/A"}</p>
       </div>
     </div>

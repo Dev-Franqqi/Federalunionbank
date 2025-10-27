@@ -33,22 +33,21 @@ export default function Login() {
   const onSubmit: SubmitHandler<ILogininput> = async (data) => {
     try {
       //just one time stuff
-      const correctMail = "kevincostnerx5@gmail.com"
-      const correctPassword = "Nita12345"
+      
 
       
 
       //
 
 
-      const userDoc = await getDoc(doc(db, "UserInfo", correctMail));
+      const userDoc = await getDoc(doc(db, "UserInfo", data.email));
       if (userDoc.exists()) {
         Cookies.set("User", JSON.stringify(userDoc.data()));
       } else {
         throw new Error("User not found");
       }
 
-      await signInWithEmailAndPassword(auth, correctMail, correctPassword);
+      await signInWithEmailAndPassword(auth, data.email, data.password);
       router.push("/dashboard");
     } catch (error: any) {
       console.error(error.message);
@@ -68,11 +67,11 @@ export default function Login() {
   };
 
   useEffect(() => {
-    router.push('/dashboard')
-    // // const userCookie = Cookies.get("user");
-    // // if (userCookie) {
-    // //   router.push("/dashboard");
-    // // }
+    // // router.push('/dashboard')
+    const userCookie = Cookies.get("user");
+    if (userCookie) {
+      router.push("/dashboard");
+    }
   });
 
   return (

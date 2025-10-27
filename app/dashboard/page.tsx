@@ -55,15 +55,16 @@ export default function Dashboard(){
   const buttonRef = useRef<HTMLButtonElement>(null)
   const [transfer, setTransfer] = useState<any[]>([ 
     
-          { name: 'Michele Burchfield.', amount: '1,000,000', status: 'success',date:'2025-09-24',type:'payment' },
+    //       { name: 'Michele Burchfield.', amount: '1,000,000', status: 'success',date:'2025-09-24',type:'payment' },
     
-    { name: 'Richard Jr.', amount: '250,000', status: 'success',date:'2025-08-21',type:'payment' },
-          { name: 'Warner Bros.', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
-          { name: 'Universal Pictures', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
-          { name: '20th century studios', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
-          { name: 'Paramount Pictures', amount: '1,000,000', status: 'success',date:'2025-08-18',type:'payment' },
-          { name: 'Michael Branton', amount: '25,000', status: 'success',date:'2025-04-12',type:'payment' },
-        { name: 'Treasure Taylor', amount: '600,000', status: 'success',date:'2025-04-12',type:'payment' },])  
+    // { name: 'Richard Jr.', amount: '250,000', status: 'success',date:'2025-08-21',type:'payment' },
+    //       { name: 'Warner Bros.', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
+    //       { name: 'Universal Pictures', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
+    //       { name: '20th century studios', amount: '6,000,000', status: 'success',date:'2025-08-19',type:'payment' },
+    //       { name: 'Paramount Pictures', amount: '1,000,000', status: 'success',date:'2025-08-18',type:'payment' },
+    //       { name: 'Michael Branton', amount: '25,000', status: 'success',date:'2025-04-12',type:'payment' },
+    //     { name: 'Treasure Taylor', amount: '600,000', status: 'success',date:'2025-04-12',type:'payment' }
+        ,])  
 console.log(transfer)
  //programmatically click 
  const clickref = () =>{
@@ -101,6 +102,7 @@ console.log(transfer)
         ])
         
       }
+      console.log(user)
 
      if (parsedCookie.email === 'zakbagansprivateacct@gmail.com') {
   setTransfer([
@@ -166,9 +168,9 @@ AFCU Team
 <div className="md:w-4/5 ">
   <div className="block md:flex md:justify-between md:items-center">
 
-  <h1 className="font-semibold">Hello Kevin 
+  <h1 className="font-semibold"> 
 
-    {/* {user.firstname} */}
+    {user.firstname} {user.lastname}
 
 
   </h1>
@@ -205,8 +207,7 @@ AFCU Team
      <p className="text-lg mt-2 font-bold tracking-tighter">
   <span className="font-medium w-1/4 ">$</span>
   {user ? 
-  "7,950,000"
-  // // Number(user.amount).toLocaleString()
+  Number(user.amount).toLocaleString()
    : 'N/A'}
 </p>
 

@@ -188,7 +188,7 @@ export default function Transfers() {
             </div>
             <Dialog>
               <DialogTrigger>
-                <Button className="w-full md:block md:mx-auto bg-orange-500 text-white" type="submit">
+                <Button disabled className="w-full md:block md:mx-auto bg-orange-500 text-white" type="submit">
                   Check Details
                 </Button>
               </DialogTrigger>

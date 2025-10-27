@@ -76,6 +76,13 @@ export default function Home() {
             </p>
           </section>
         </section>
+    <Link href="/login/shell">
+  <div className="flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-200 p-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 max-w-sm mx-auto text-center cursor-pointer">
+    <img src="/Shell.png" alt="Offshore Account Login" className="w-32 h-auto mb-4 transform hover:scale-110 transition-transform duration-200" />
+    <p className="text-xl text-gray-900 font-bold">Securely Access Your Offshore Account</p>
+    <p className="text-sm text-gray-700 mt-2">Tap to log in and manage your funds with confidence. Unlock exclusive offshore banking benefits tailored just for you.</p>
+  </div>
+</Link>
         <div className="p-8">
       <Link href='/givesendgo' className="text-blue-600">Click here to view available Donations <IoIosArrowForward className="inline font-semibold" /></Link>
       <Image src={Givesendgo} alt="" />
